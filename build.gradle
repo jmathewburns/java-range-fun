@@ -1,0 +1,20 @@
+plugins {
+    id 'idea'
+    id 'java'
+    id 'java-library-distribution'
+}
+
+group 'xyz.cques.rangefun'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+    testCompile 'junit:junit:4.12'
+    testCompile 'org.mockito:mockito-inline:2.8.9'
+}
