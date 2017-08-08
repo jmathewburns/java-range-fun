@@ -29,9 +29,33 @@ public class APITest {
     }
 
     @Test
+    public void shouldReturnNonNullSteppedRange() {
+        Iterable<Integer> range = Range.of(0, 4, 2);
+
+        assertNotNull(range);
+    }
+
+    @Test
+    public void shouldReturnNonNullSteppedIterator() {
+        Iterable<Integer> range = Range.of(0, 4, 2);
+
+        Iterator<Integer> rangeIterator = range.iterator();
+
+        assertNotNull(rangeIterator);
+    }
+
+    @Test
     public void shouldReturnCorrectBasicRangeOfInts() {
         Iterable<Integer> range = Range.of(1, 3);
         int[] expectedIntegers = {1, 2, 3};
+
+        assertTrue(rangeReturnsExpectedInts(range, expectedIntegers));
+    }
+
+    @Test
+    public void shouldReturnCorrectSteppedRangeOfInts() {
+        Iterable<Integer> range = Range.of(0, 4, 2);
+        int[] expectedIntegers = {0, 2, 4};
 
         assertTrue(rangeReturnsExpectedInts(range, expectedIntegers));
     }
