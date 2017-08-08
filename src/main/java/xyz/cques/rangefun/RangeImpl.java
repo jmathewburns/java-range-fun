@@ -2,6 +2,7 @@ package xyz.cques.rangefun;
 
 import java.util.Comparator;
 import java.util.Iterator;
+import java.util.Objects;
 
 /**
  * Created by Jacques on 08-08-2017.
@@ -51,9 +52,6 @@ final class RangeImpl implements Iterable<Integer> {
 
     @Override
     public int hashCode() {
-        int result = start;
-        result = 31 * result + end;
-        result = 31 * result + step;
-        return result;
+        return Objects.hash(start, end, step);
     }
 }
