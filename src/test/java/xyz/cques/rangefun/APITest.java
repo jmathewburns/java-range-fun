@@ -13,26 +13,26 @@ import static xyz.cques.rangefun.RangeTestHelper.rangeReturnsExpectedInts;
  */
 public class APITest {
     @Test
-    public void shouldReturnNonNullRange() {
-        Interval interval = Range.of(1, 3);
+    public void shouldReturnNonNullBasicRange() {
+        Iterable<Integer> range = Range.of(1, 3);
 
-        assertNotNull(interval);
+        assertNotNull(range);
     }
 
     @Test
-    public void shouldReturnNonNullIterator() {
-        Interval interval = Range.of(1, 3);
+    public void shouldReturnNonNullBasicIterator() {
+        Iterable<Integer> range = Range.of(1, 3);
 
-        Iterator<Integer> rangeIterator = interval.iterator();
+        Iterator<Integer> rangeIterator = range.iterator();
 
         assertNotNull(rangeIterator);
     }
 
     @Test
     public void shouldReturnCorrectBasicRangeOfInts() {
-        Interval interval = Range.of(1, 3);
+        Iterable<Integer> range = Range.of(1, 3);
         int[] expectedIntegers = {1, 2, 3};
 
-        assertTrue(rangeReturnsExpectedInts(interval, expectedIntegers));
+        assertTrue(rangeReturnsExpectedInts(range, expectedIntegers));
     }
 }

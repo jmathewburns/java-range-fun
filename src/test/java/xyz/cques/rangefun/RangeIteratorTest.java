@@ -14,7 +14,7 @@ public class RangeIteratorTest {
     @Test
     public void shouldReturnBasicRangeOfExpectedInts() {
         int[] expectedIntegers = { 1, 2, 3, };
-        Iterator<Integer> rangeIterator = new RangeIterator(1, 3);
+        Iterator<Integer> rangeIterator = new RangeIterator(1, 3, 1);
 
         assertTrue(rangeReturnsExpectedInts(rangeIterator, expectedIntegers));
     }
@@ -30,7 +30,7 @@ public class RangeIteratorTest {
     @Test
     public void shouldReturnReversedRangeOfExpectedInts() {
         int[] expectedIntegers = { 3, 2, 1, };
-        Iterator<Integer> rangeIterator = new RangeIterator(3, 1);
+        Iterator<Integer> rangeIterator = new RangeIterator(3, 1, 1);
 
         assertTrue(rangeReturnsExpectedInts(rangeIterator, expectedIntegers));
     }

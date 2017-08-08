@@ -7,16 +7,10 @@ import java.util.PrimitiveIterator;
  * Created by Jacques on 2017/06/21.
  */
 class RangeIterator implements PrimitiveIterator.OfInt {
-    private static final int DEFAULT_STEP = 1;
-
     private boolean backwardsIteration;
     private final int step;
     private final int end;
     private int current;
-
-    RangeIterator(int start, int end) {
-        this(start, end, DEFAULT_STEP);
-    }
 
     RangeIterator(int start, int end, int step) {
         this.current = start;

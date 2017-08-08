@@ -7,20 +7,22 @@ import java.util.Iterator;
  */
 public class RangeTestHelper {
     private RangeTestHelper() {
-        throw new AssertionError();
+        throw new AssertionError(
+                "RangeTestHelper is not instantiable"
+        );
     }
 
     /**
-     * Tests if the given {@code Interval} returns no more and no less than all of the integers
+     * Tests if the given {@code Iterable} returns no more and no less than all of the integers
      * in {@code expectedInts}, in order.
      *
-     * @param interval     The Interval to be tested.
+     * @param range     The Iterable to be tested.
      * @param expectedInts The integers that should be returned by {@code interval}.
      * @return {@code true} if {@code interval} is the same size as {@code expectedInts} and
      * returns the values of {@code expectedInts}, in order, {@code false} otherwise.
      */
-    public static boolean rangeReturnsExpectedInts(Interval interval, int[] expectedInts) {
-        Iterator<Integer> rangeIterator = interval.iterator();
+    public static boolean rangeReturnsExpectedInts(Iterable<Integer> range, int[] expectedInts) {
+        Iterator<Integer> rangeIterator = range.iterator();
         return rangeReturnsExpectedInts(rangeIterator, expectedInts);
     }
 
