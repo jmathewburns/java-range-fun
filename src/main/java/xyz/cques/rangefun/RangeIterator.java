@@ -16,14 +16,20 @@ class RangeIterator implements PrimitiveIterator.OfInt {
     }
 
     /**
-     * Returns the next {@code int} element in the iteration.
+     * Returns the next {@code int} element in the range.
      *
-     * @return the next {@code int} element in the iteration
-     * @throws NoSuchElementException if the iteration has no more elements
+     * @return the next {@code int} element in the range
+     * @throws NoSuchElementException if the end of the range has been reached
      */
     @Override
     public int nextInt() {
-        return current++;
+        if (hasNext()) {
+            return current++;
+        } else {
+            throw new NoSuchElementException(
+                    "the end of the range has been reached"
+            );
+        }
     }
 
     /**

@@ -7,5 +7,4 @@ public class Range {
     public static Interval of(int low, int high) {
         return (() -> new RangeIterator(low, high));
     }
-
 }

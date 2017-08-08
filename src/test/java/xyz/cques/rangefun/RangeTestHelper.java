@@ -19,8 +19,12 @@ public class RangeTestHelper {
      * @return {@code true} if {@code interval} is the same size as {@code expectedInts} and
      * returns the values of {@code expectedInts}, in order, {@code false} otherwise.
      */
-    public static boolean rangeReturnsExpectedInts(Interval interval, int... expectedInts) {
+    public static boolean rangeReturnsExpectedInts(Interval interval, int[] expectedInts) {
         Iterator<Integer> rangeIterator = interval.iterator();
+        return rangeReturnsExpectedInts(rangeIterator, expectedInts);
+    }
+
+    public static boolean rangeReturnsExpectedInts(Iterator<Integer> rangeIterator, int[] expectedInts) {
         int currentIndex = 0;
         int rangeSize = 0;
 
