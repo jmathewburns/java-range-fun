@@ -1,18 +1,42 @@
 package xyz.cques.rangefun;
 
 import java.util.NoSuchElementException;
+import java.util.Objects;
 import java.util.PrimitiveIterator;
 
 /**
  * Created by Jacques on 2017/06/21.
  */
 class RangeIterator implements PrimitiveIterator.OfInt {
+    private boolean backwardsIteration;
+    private final int step;
     private final int end;
     private int current;
 
-    RangeIterator(int start, int end) {
+    RangeIterator(int start, int end, int step) {
         this.current = start;
         this.end = end;
+
+        if (isBackwardsIteration(start, end)) {
+            backwardsIteration = true;
+            this.step = negative(step);
+        } else {
+            this.step = step;
+        }
+    }
+
+    private boolean isBackwardsIteration(int start, int end) {
+        return start > end;
+    }
+
+    private int negative(int number) {
+        int newNumber = number;
+
+        if (newNumber > 0) {
+            newNumber = -newNumber;
+        }
+
+        return newNumber;
     }
 
     /**
@@ -24,7 +48,9 @@ class RangeIterator implements PrimitiveIterator.OfInt {
     @Override
     public int nextInt() {
         if (hasNext()) {
-            return current++;
+            int oldCurrent = current;
+            current = current + step;
+            return oldCurrent;
         } else {
             throw new NoSuchElementException(
                     "the end of the range has been reached"
@@ -41,8 +67,42 @@ class RangeIterator implements PrimitiveIterator.OfInt {
      */
     @Override
     public boolean hasNext() {
+        if (backwardsIteration) {
+            return current >= end;
+        }
         return current <= end;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
+        RangeIterator other = (RangeIterator) o;
+
+        return backwardsIteration == other.backwardsIteration &&
+                step == other.step &&
+                end == other.end &&
+                current == other.current;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(backwardsIteration,
+                            step,
+                            end,
+                            current);
+    }
+
+    @Override
+    public String toString() {
+        return String.format(
+                "RangeIterator{backwardsIteration=%s, step=%s, end=%s, current=%s}",
+                backwardsIteration, step, end, current
+        );
+    }
 }
