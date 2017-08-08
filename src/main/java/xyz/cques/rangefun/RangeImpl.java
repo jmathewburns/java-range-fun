@@ -30,8 +30,8 @@ final class RangeImpl implements Iterable<Integer> {
 
     @Override
     public String toString() {
-        return String.format("RangeImpl { start=%d, end=%d, step=%d }",
-                            start, end, step);
+        return String.format("RangeImpl{start=%s, end=%s, step=%s}",
+                             start, end, step);
     }
 
     @Override

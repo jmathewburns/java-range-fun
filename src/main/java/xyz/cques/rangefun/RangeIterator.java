@@ -97,4 +97,12 @@ class RangeIterator implements PrimitiveIterator.OfInt {
                             end,
                             current);
     }
+
+    @Override
+    public String toString() {
+        return String.format(
+                "RangeIterator{backwardsIteration=%s, step=%s, end=%s, current=%s}",
+                backwardsIteration, step, end, current
+        );
+    }
 }

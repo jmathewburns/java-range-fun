@@ -57,6 +57,12 @@ public class RangeBuilder implements Iterable<Integer> {
     }
 
     @Override
+    public String toString() {
+        return String.format("RangeBuilder{start=%s, end=%s, step=%s}",
+                            start, end, step);
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
