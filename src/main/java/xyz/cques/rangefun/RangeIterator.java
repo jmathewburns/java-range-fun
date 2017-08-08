@@ -1,6 +1,7 @@
 package xyz.cques.rangefun;
 
 import java.util.NoSuchElementException;
+import java.util.Objects;
 import java.util.PrimitiveIterator;
 
 /**
@@ -70,5 +71,30 @@ class RangeIterator implements PrimitiveIterator.OfInt {
             return current >= end;
         }
         return current <= end;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        RangeIterator other = (RangeIterator) o;
+
+        return backwardsIteration == other.backwardsIteration &&
+                step == other.step &&
+                end == other.end &&
+                current == other.current;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(backwardsIteration,
+                            step,
+                            end,
+                            current);
     }
 }
