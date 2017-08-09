@@ -7,9 +7,6 @@ import java.util.Iterator;
 import static org.junit.Assert.assertTrue;
 import static xyz.rangefun.RangeTestHelper.rangeReturnsExpectedInts;
 
-/**
- * Created by Jacques on 08-08-2017.
- */
 public class ReverseRangeIteratorTest {
     @Test
     public void shouldReturnReversedRangeOfExpectedInts() {

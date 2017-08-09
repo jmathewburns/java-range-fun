@@ -4,9 +4,6 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-/**
- * Created by Jacques on 08-08-2017.
- */
 public class RangeImplTest {
     @Test
     public void shouldCreateRangeImplementation() {

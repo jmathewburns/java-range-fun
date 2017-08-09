@@ -4,9 +4,6 @@ import java.util.NoSuchElementException;
 import java.util.Objects;
 import java.util.PrimitiveIterator;
 
-/**
- * Created by Jacques on 2017/06/21.
- */
 class SimpleRangeIterator implements PrimitiveIterator.OfInt {
     private final int step;
     private final int end;

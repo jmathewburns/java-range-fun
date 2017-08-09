@@ -8,9 +8,6 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static xyz.rangefun.RangeTestHelper.rangeReturnsExpectedInts;
 
-/**
- * Created by Jacques on 2017/06/20.
- */
 public class APITest {
     @Test
     public void shouldReturnNonNullBasicRange() {

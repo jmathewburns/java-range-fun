@@ -2,9 +2,6 @@ package xyz.rangefun;
 
 import java.util.Iterator;
 
-/**
- * Created by Jacques on 2017/06/20.
- */
 class RangeTestHelper {
     private RangeTestHelper() {
         throw new AssertionError(

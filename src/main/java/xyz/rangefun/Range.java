@@ -1,8 +1,5 @@
 package xyz.rangefun;
 
-/**
- * Created by Jacques on 2017/06/20.
- */
 public class Range {
     private static final int DEFAULT_STEP = 1;
 

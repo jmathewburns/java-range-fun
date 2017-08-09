@@ -3,9 +3,6 @@ package xyz.rangefun;
 import java.util.Objects;
 import java.util.PrimitiveIterator;
 
-/**
- * Created by Jacques on 08-08-2017.
- */
 public class RangeBuilder implements Iterable<Integer> {
     private int start;
     private int end;
