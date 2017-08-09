@@ -1,11 +1,11 @@
-package xyz.cques.rangefun;
+package xyz.rangefun;
 
 import java.util.Iterator;
 
 /**
  * Created by Jacques on 2017/06/20.
  */
-public class RangeTestHelper {
+class RangeTestHelper {
     private RangeTestHelper() {
         throw new AssertionError(
                 "RangeTestHelper is not instantiable"

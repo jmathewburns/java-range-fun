@@ -1,4 +1,4 @@
-package xyz.cques.rangefun;
+package xyz.rangefun;
 
 import org.junit.Test;
 
@@ -6,7 +6,7 @@ import java.util.Iterator;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
-import static xyz.cques.rangefun.RangeTestHelper.rangeReturnsExpectedInts;
+import static xyz.rangefun.RangeTestHelper.rangeReturnsExpectedInts;
 
 /**
  * Created by Jacques on 2017/06/20.

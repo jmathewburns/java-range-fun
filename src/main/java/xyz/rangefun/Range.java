@@ -1,4 +1,4 @@
-package xyz.cques.rangefun;
+package xyz.rangefun;
 
 /**
  * Created by Jacques on 2017/06/20.

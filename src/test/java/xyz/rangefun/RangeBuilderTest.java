@@ -1,9 +1,9 @@
-package xyz.cques.rangefun;
+package xyz.rangefun;
 
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
-import static xyz.cques.rangefun.RangeTestHelper.rangeReturnsExpectedInts;
+import static xyz.rangefun.RangeTestHelper.rangeReturnsExpectedInts;
 
 /**
  * Created by Jacques on 08-08-2017.

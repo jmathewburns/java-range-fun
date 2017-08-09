@@ -1,4 +1,4 @@
-package xyz.cques.rangefun;
+package xyz.rangefun;
 
 import org.junit.Test;
 

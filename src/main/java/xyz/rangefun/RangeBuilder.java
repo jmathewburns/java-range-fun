@@ -1,6 +1,5 @@
-package xyz.cques.rangefun;
+package xyz.rangefun;
 
-import java.util.Iterator;
 import java.util.Objects;
 import java.util.PrimitiveIterator;
 

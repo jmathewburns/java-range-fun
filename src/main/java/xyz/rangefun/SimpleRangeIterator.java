@@ -1,4 +1,4 @@
-package xyz.cques.rangefun;
+package xyz.rangefun;
 
 import java.util.NoSuchElementException;
 import java.util.Objects;
@@ -7,17 +7,15 @@ import java.util.PrimitiveIterator;
 /**
  * Created by Jacques on 2017/06/21.
  */
-class ReverseRangeIterator implements PrimitiveIterator.OfInt {
+class SimpleRangeIterator implements PrimitiveIterator.OfInt {
     private final int step;
     private final int end;
     private int current;
 
-    ReverseRangeIterator(int start, int end, int step) {
+    SimpleRangeIterator(int start, int end, int step) {
         this.current = start;
         this.end = end;
-        // in case users think a negative step is necessary
-        // TODO document this
-        this.step = Math.abs(step);
+        this.step = step;
     }
 
     /**
@@ -30,7 +28,7 @@ class ReverseRangeIterator implements PrimitiveIterator.OfInt {
     public int nextInt() {
         if (hasNext()) {
             int oldCurrent = current;
-            current = current - step;
+            current = current + step;
             return oldCurrent;
         } else {
             throw new NoSuchElementException(
@@ -48,7 +46,7 @@ class ReverseRangeIterator implements PrimitiveIterator.OfInt {
      */
     @Override
     public boolean hasNext() {
-        return current >= end;
+        return current <= end;
     }
 
     @Override
@@ -60,7 +58,7 @@ class ReverseRangeIterator implements PrimitiveIterator.OfInt {
             return false;
         }
 
-        ReverseRangeIterator other = (ReverseRangeIterator) o;
+        SimpleRangeIterator other = (SimpleRangeIterator) o;
 
         return  step == other.step &&
                 end == other.end &&

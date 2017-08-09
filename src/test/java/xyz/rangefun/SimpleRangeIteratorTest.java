@@ -1,11 +1,11 @@
-package xyz.cques.rangefun;
+package xyz.rangefun;
 
 import org.junit.Test;
 
 import java.util.Iterator;
 
 import static org.junit.Assert.assertTrue;
-import static xyz.cques.rangefun.RangeTestHelper.rangeReturnsExpectedInts;
+import static xyz.rangefun.RangeTestHelper.rangeReturnsExpectedInts;
 
 /**
  * Created by Jacques on 08-08-2017.
@@ -16,7 +16,7 @@ public class SimpleRangeIteratorTest {
         int[] expectedIntegers = { 1, 2, 3, };
         Iterator<Integer> rangeIterator = new SimpleRangeIterator(1, 3, 1);
 
-        assertTrue(rangeReturnsExpectedInts(rangeIterator, expectedIntegers));
+        assertTrue(RangeTestHelper.rangeReturnsExpectedInts(rangeIterator, expectedIntegers));
     }
 
     @Test
@@ -24,6 +24,6 @@ public class SimpleRangeIteratorTest {
         int[] expectedIntegers = { 1, 3, 5, };
         Iterator<Integer> rangeIterator = new SimpleRangeIterator(1, 6, 2);
 
-        assertTrue(rangeReturnsExpectedInts(rangeIterator, expectedIntegers));
+        assertTrue(RangeTestHelper.rangeReturnsExpectedInts(rangeIterator, expectedIntegers));
     }
 }
