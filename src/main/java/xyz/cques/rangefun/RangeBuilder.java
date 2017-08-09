@@ -2,6 +2,7 @@ package xyz.cques.rangefun;
 
 import java.util.Iterator;
 import java.util.Objects;
+import java.util.PrimitiveIterator;
 
 /**
  * Created by Jacques on 08-08-2017.
@@ -52,8 +53,8 @@ public class RangeBuilder implements Iterable<Integer> {
     }
 
     @Override
-    public Iterator<Integer> iterator() {
-        return build().iterator();
+    public PrimitiveIterator.OfInt iterator() {
+        return (PrimitiveIterator.OfInt) build().iterator();
     }
 
     @Override
