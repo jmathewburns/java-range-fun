@@ -7,36 +7,17 @@ import java.util.PrimitiveIterator;
 /**
  * Created by Jacques on 2017/06/21.
  */
-class RangeIterator implements PrimitiveIterator.OfInt {
-    private boolean backwardsIteration;
+class ReverseRangeIterator implements PrimitiveIterator.OfInt {
     private final int step;
     private final int end;
     private int current;
 
-    RangeIterator(int start, int end, int step) {
+    ReverseRangeIterator(int start, int end, int step) {
         this.current = start;
         this.end = end;
-
-        if (isBackwardsIteration(start, end)) {
-            backwardsIteration = true;
-            this.step = negative(step);
-        } else {
-            this.step = step;
-        }
-    }
-
-    private boolean isBackwardsIteration(int start, int end) {
-        return start > end;
-    }
-
-    private int negative(int number) {
-        int newNumber = number;
-
-        if (newNumber > 0) {
-            newNumber = -newNumber;
-        }
-
-        return newNumber;
+        // in case users think a negative step is necessary
+        // TODO document this
+        this.step = Math.abs(step);
     }
 
     /**
@@ -49,7 +30,7 @@ class RangeIterator implements PrimitiveIterator.OfInt {
     public int nextInt() {
         if (hasNext()) {
             int oldCurrent = current;
-            current = current + step;
+            current = current - step;
             return oldCurrent;
         } else {
             throw new NoSuchElementException(
@@ -67,10 +48,7 @@ class RangeIterator implements PrimitiveIterator.OfInt {
      */
     @Override
     public boolean hasNext() {
-        if (backwardsIteration) {
-            return current >= end;
-        }
-        return current <= end;
+        return current >= end;
     }
 
     @Override
@@ -82,18 +60,16 @@ class RangeIterator implements PrimitiveIterator.OfInt {
             return false;
         }
 
-        RangeIterator other = (RangeIterator) o;
+        ReverseRangeIterator other = (ReverseRangeIterator) o;
 
-        return backwardsIteration == other.backwardsIteration &&
-                step == other.step &&
+        return  step == other.step &&
                 end == other.end &&
                 current == other.current;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(backwardsIteration,
-                            step,
+        return Objects.hash(step,
                             end,
                             current);
     }
@@ -101,8 +77,8 @@ class RangeIterator implements PrimitiveIterator.OfInt {
     @Override
     public String toString() {
         return String.format(
-                "RangeIterator{backwardsIteration=%s, step=%s, end=%s, current=%s}",
-                backwardsIteration, step, end, current
+                "SimpleRangeIterator{step=%s, end=%s, current=%s}",
+                step, end, current
         );
     }
 }
