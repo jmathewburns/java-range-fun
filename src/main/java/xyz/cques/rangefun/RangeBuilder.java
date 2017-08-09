@@ -36,7 +36,7 @@ public class RangeBuilder implements Iterable<Integer> {
     public RangeBuilder reverse() {
         int temp = start;
         start = end;
-        end = start;
+        end = temp;
 
         return this;
     }
