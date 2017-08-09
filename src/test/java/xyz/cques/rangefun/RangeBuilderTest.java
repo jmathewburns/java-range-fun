@@ -22,10 +22,10 @@ public class RangeBuilderTest {
 
         RangeImpl expected = new RangeImpl(start, end, step);
         RangeImpl actual = (RangeImpl) new RangeBuilder()
-                            .from(start)
-                            .to(end)
-                            .step(step)
-                            .build();
+                                            .from(start)
+                                            .to(end)
+                                            .step(step)
+                                            .build();
 
         assertEquals(expected, actual);
     }
@@ -47,11 +47,11 @@ public class RangeBuilderTest {
     public void shouldCreateRangeWithExclusiveEnd() {
         int[] expectedIntegers = { 1, 2, 3, 4, };
         Iterable<Integer> range = new RangeBuilder()
-                .from(0)
-                .to(5)
-                .step(1)
-                .exclusiveEnd()
-                .build();
+                                        .from(0)
+                                        .to(5)
+                                        .step(1)
+                                        .exclusiveEnd()
+                                        .build();
 
         rangeReturnsExpectedInts(range, expectedIntegers);
     }
