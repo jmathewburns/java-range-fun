@@ -23,7 +23,7 @@ public class RangeImplTest {
 
     @Test
     public void shouldReflectGivenValuesInToString() {
-        String expected = "RangeImpl { start=0, end=10, step=5 }";
+        String expected = "RangeImpl{start=0, end=10, step=5}";
         RangeImpl range = new RangeImpl(0, 10, 5);
 
         assertEquals(expected, range.toString());
