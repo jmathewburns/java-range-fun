@@ -29,65 +29,57 @@ public class Range {
     public static RangeBuilder of(Object[] array) {
         return new RangeBuilder()
                 .from(0)
-                .to(array.length)
-                .step(DEFAULT_STEP)
-                .exclusiveEnd();
+                .to(array.length - 1)
+                .step(DEFAULT_STEP);
     }
 
     public static RangeBuilder of(int[] array) {
         return new RangeBuilder()
                 .from(0)
-                .to(array.length)
-                .step(DEFAULT_STEP)
-                .exclusiveEnd();
+                .to(array.length - 1)
+                .step(DEFAULT_STEP);
     }
 
     public static RangeBuilder of(long[] array) {
         return new RangeBuilder()
                 .from(0)
-                .to(array.length)
-                .step(DEFAULT_STEP)
-                .exclusiveEnd();
+                .to(array.length - 1)
+                .step(DEFAULT_STEP);
     }
 
     public static RangeBuilder of(float[] array) {
         return new RangeBuilder()
                 .from(0)
-                .to(array.length)
-                .step(DEFAULT_STEP)
-                .exclusiveEnd();
+                .to(array.length - 1)
+                .step(DEFAULT_STEP);
     }
 
     public static RangeBuilder of(double[] array) {
         return new RangeBuilder()
                 .from(0)
-                .to(array.length)
-                .step(DEFAULT_STEP)
-                .exclusiveEnd();
+                .to(array.length - 1)
+                .step(DEFAULT_STEP);
     }
 
     public static RangeBuilder of(byte[] array) {
         return new RangeBuilder()
                 .from(0)
-                .to(array.length)
-                .step(DEFAULT_STEP)
-                .exclusiveEnd();
+                .to(array.length - 1)
+                .step(DEFAULT_STEP);
     }
 
     public static RangeBuilder of(char[] array) {
         return new RangeBuilder()
                 .from(0)
-                .to(array.length)
-                .step(DEFAULT_STEP)
-                .exclusiveEnd();
+                .to(array.length - 1)
+                .step(DEFAULT_STEP);
     }
 
     public static RangeBuilder of(short[] array) {
         return new RangeBuilder()
                 .from(0)
-                .to(array.length)
-                .step(DEFAULT_STEP)
-                .exclusiveEnd();
+                .to(array.length - 1)
+                .step(DEFAULT_STEP);
     }
     
     public static Iterable<Integer> range(int start, int end, int step) {

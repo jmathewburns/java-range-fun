@@ -42,12 +42,6 @@ public class RangeBuilder implements Iterable<Integer> {
         return this;
     }
 
-    public RangeBuilder exclusiveEnd() {
-        end = end - 1;
-
-        return this;
-    }
-
     public Iterable<Integer> build() {
         return new RangeImpl(start, end, step);
     }

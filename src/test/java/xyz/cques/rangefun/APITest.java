@@ -64,8 +64,7 @@ public class APITest {
     public void shouldReturnCorrectRangeOfIntsWithFluidAPI() {
         Iterable<Integer> range = Range.of(0)
                                         .to(5)
-                                        .step(2)
-                                        .exclusiveEnd();
+                                        .step(2);
         int[] expectedIntegers = {0, 2, 4};
 
         assertTrue(rangeReturnsExpectedInts(range, expectedIntegers));

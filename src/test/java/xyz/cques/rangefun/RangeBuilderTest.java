@@ -44,19 +44,6 @@ public class RangeBuilderTest {
     }
 
     @Test
-    public void shouldCreateRangeWithExclusiveEnd() {
-        int[] expectedIntegers = { 1, 2, 3, 4, };
-        Iterable<Integer> range = new RangeBuilder()
-                                        .from(0)
-                                        .to(5)
-                                        .step(1)
-                                        .exclusiveEnd()
-                                        .build();
-
-        rangeReturnsExpectedInts(range, expectedIntegers);
-    }
-
-    @Test
     public void shouldImplicitlyCreateEquivalentRangeIterators() {
         RangeBuilder builder = new RangeBuilder()
                                     .from(1)
