@@ -1,7 +1,5 @@
 package xyz.cques.rangefun;
 
-import java.util.Comparator;
-import java.util.Iterator;
 import java.util.Objects;
 import java.util.PrimitiveIterator;
 
@@ -12,11 +10,14 @@ final class RangeImpl implements Iterable<Integer> {
     private final int start;
     private final int end;
     private final int step;
+    private final boolean backwards;
 
     RangeImpl(int start, int end, int step) {
         this.start = start;
         this.end = end;
         this.step = step;
+
+        backwards = (start > end || step < 0);
     }
 
     /**
@@ -26,7 +27,10 @@ final class RangeImpl implements Iterable<Integer> {
      */
     @Override
     public PrimitiveIterator.OfInt iterator() {
-        return new RangeIterator(start, end, step);
+        if (backwards) {
+            return new ReverseRangeIterator(start, end, step);
+        }
+        return new SimpleRangeIterator(start, end, step);
     }
 
     @Override
