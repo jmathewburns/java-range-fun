@@ -2,6 +2,8 @@ plugins {
     id 'idea'
     id 'java'
     id 'java-library-distribution'
+
+    id 'com.github.hierynomus.license' version '0.11.0'
 }
 
 group projectGroup
@@ -15,4 +17,17 @@ repositories {
 
 dependencies {
     testCompile 'junit:junit:4.12'
+}
+
+license {
+    header = rootProject.file('gradle/HEADER')
+    strictCheck = true
+    ignoreFailures = true
+    mapping {
+        java = 'SLASHSTAR_STYLE'
+        fxml = 'XML_STYLE'
+    }
+    ext.year = projectYear
+    ext.author = projectAuthor
+    ext.project = projectName
 }
