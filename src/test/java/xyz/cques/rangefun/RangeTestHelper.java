@@ -21,26 +21,19 @@ public class RangeTestHelper {
      * @return {@code true} if {@code interval} is the same size as {@code expectedInts} and
      * returns the values of {@code expectedInts}, in order, {@code false} otherwise.
      */
-    public static boolean rangeReturnsExpectedInts(Iterable<Integer> range, int[] expectedInts) {
+    static boolean rangeReturnsExpectedInts(Iterable<Integer> range, int[] expectedInts) {
         Iterator<Integer> rangeIterator = range.iterator();
         return rangeReturnsExpectedInts(rangeIterator, expectedInts);
     }
 
-    public static boolean rangeReturnsExpectedInts(Iterator<Integer> rangeIterator, int[] expectedInts) {
+    static boolean rangeReturnsExpectedInts(Iterator<Integer> rangeIterator, int[] expectedInts) {
         int currentIndex = 0;
         int rangeSize = 0;
 
         while (rangeIterator.hasNext()) {
             int current = rangeIterator.next();
 
-            int expected;
-            try {
-                expected = expectedInts[currentIndex];
-            } catch (ArrayIndexOutOfBoundsException exception) {
-                return false;
-            }
-
-            if (current != expected) {
+            if (!intAtIndexEqualsExpected(expectedInts, currentIndex, current)) {
                 return false;
             }
 
@@ -49,5 +42,13 @@ public class RangeTestHelper {
         }
 
         return rangeSize == expectedInts.length;
+    }
+
+    private static boolean intAtIndexEqualsExpected(int[] array, int index, int expected) {
+        if (index < 0 || index >= array.length) {
+            return false;
+        }
+
+        return array[index] == expected;
     }
 }
