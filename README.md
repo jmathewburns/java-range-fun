@@ -1,2 +1,23 @@
 # Range Fun(ctions)
-Set of Java range functions to combine the power of a traditional for loop with the prettiness and ease-of-use of a for-each.
+
+A small (five-class) library to combine the power of traditional for loop with the prettiness and simplicity of a for-each.
+
+## Description
+
+TODO
+
+## Examples
+
+TODO
+
+## Features
+
+[ ] TODO
+
+## Licensing
+
+TODO
+
+## Feedback
+
+TODO
