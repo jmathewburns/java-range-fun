@@ -18,7 +18,7 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package xyz.rangefun;
+package xyz.jmburns.rangefun;
 
 import java.util.Objects;
 import java.util.PrimitiveIterator;
@@ -28,28 +28,64 @@ public class RangeBuilder implements Iterable<Integer> {
     private int end;
     private int step;
 
+    /**
+     * Creates a new {@code RangeBuilder} with 'from', 'to', and 'step' value of 0.
+     */
     public RangeBuilder() {
         /* Suppresses default constructor. */
     }
 
+    /**
+     * Sets the beginning of the range to be built.
+     *
+     * @param start The beginning of the range to be built, and the first Integer to
+     *              be returned by the built range's {@code Iterator}.
+     * @return The same {@code RangeBuilder} object on which this method was called.
+     */
     public RangeBuilder from(int start) {
         this.start = start;
 
         return this;
     }
 
+    /**
+     * Sets the end of the range to be built.
+     *
+     * @param end The end of the range. This value may or may not be returned by the built
+     *            range's {@code Iterator} (depending on the chosen 'step' value), but it
+     *            is guaranteed to never go beyond this value.
+     * @return The same {@code RangeBuilder} object on which this method was called.
+     */
     public RangeBuilder to(int end) {
         this.end = end;
 
         return this;
     }
 
+    /**
+     * Sets the 'step' of the range to be built.
+     *
+     * @param step The value by which the value returned by the {@code Iterable}'s {@code Iterator}
+     *             will change upon each successive call to {@code next()}.
+     * @return The same {@code RangeBuilder} object on which this method was called.
+     */
     public RangeBuilder step(int step) {
         this.step = step;
 
         return this;
     }
 
+    /**
+     * Reverses the range to be built, so that its {@code Iterator} will iterate from the given 'to'
+     * value, to the given 'from' value.
+     *
+     * @implNote Successive calls to {@code reverse()} will cancel each other out, so calling
+     *           {@code rangeBuilder.reverse().reverse()} will be the same as never calling it,
+     *           and calling {@code rangeBuilder.reverse().reverse().reverse()} will be the same
+     *           as only calling it once, and so on.
+     *
+     * @return The same {@code RangeBuilder} object on which this method was called.
+     */
     public RangeBuilder reverse() {
         int temp = start;
         start = end;
@@ -58,10 +94,28 @@ public class RangeBuilder implements Iterable<Integer> {
         return this;
     }
 
+    /**
+     * Builds the range, whose {@code Iterator} will generate {@code Integer}
+     * values as set by calls to {@code RangeBuilder}'s methods.
+     *
+     * @return A new {Iterable<Integer>}, whose {@code Iterator} will generate {@code Integer}
+     * values as set by calls to {@code RangeBuilder}'s methods.
+     */
     public Iterable<Integer> build() {
         return new RangeImpl(start, end, step);
     }
 
+    /**
+     * Returns an {@code Iterator} for a range built using the current values set
+     * for this {@code RangeBuilder}.
+     *
+     * @implNote This method behaves exactly as if calling {@code build().iterator()} on this
+     *           {@code RangeBuilder}, and is included for convenience, when storing the built
+     *           range is not important.
+     *
+     * @return A new {@code Iterator} for a range built using the current values set
+     *         for this {@code RangeBuilder}.
+     */
     @Override
     public PrimitiveIterator.OfInt iterator() {
         return (PrimitiveIterator.OfInt) build().iterator();

@@ -18,28 +18,28 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package xyz.rangefun;
+package xyz.jmburns.rangefun;
 
 import org.junit.Test;
 
 import java.util.Iterator;
 
 import static org.junit.Assert.assertTrue;
-import static xyz.rangefun.RangeTestHelper.rangeReturnsExpectedInts;
+import static xyz.jmburns.rangefun.RangeTestHelper.rangeReturnsExpectedInts;
 
-public class SimpleRangeIteratorTest {
+public class ReverseRangeIteratorTest {
     @Test
-    public void shouldReturnBasicRangeOfExpectedInts() {
-        int[] expectedIntegers = { 1, 2, 3, };
-        Iterator<Integer> rangeIterator = new SimpleRangeIterator(1, 3, 1);
+    public void shouldReturnReversedRangeOfExpectedInts() {
+        int[] expectedIntegers = { 3, 2, 1, };
+        Iterator<Integer> rangeIterator = new ReverseRangeIterator(3, 1, 1);
 
         assertTrue(RangeTestHelper.rangeReturnsExpectedInts(rangeIterator, expectedIntegers));
     }
 
     @Test
-    public void shouldReturnSteppedRangeOfExpectedInts() {
-        int[] expectedIntegers = { 1, 3, 5, };
-        Iterator<Integer> rangeIterator = new SimpleRangeIterator(1, 6, 2);
+    public void shouldReturnReversedSteppedRangeOfExpectedInts() {
+        int[] expectedIntegers = { 6, 4, 2, };
+        Iterator<Integer> rangeIterator = new ReverseRangeIterator(6, 1, 2);
 
         assertTrue(RangeTestHelper.rangeReturnsExpectedInts(rangeIterator, expectedIntegers));
     }
