@@ -19,6 +19,15 @@ dependencies {
     testCompile 'junit:junit:4.12'
 }
 
+javadoc {
+    /* Add support for tasty new Java 8 tags */
+    options.tags = [
+            "apiNote:a:API Note:",
+            "implSpec:a:Implementation Requirements:",
+            "implNote:a:Implementation Note:"
+    ]
+}
+
 license {
     header = rootProject.file('gradle/HEADER')
     strictCheck = true

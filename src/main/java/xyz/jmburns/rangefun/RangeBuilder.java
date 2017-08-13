@@ -23,6 +23,10 @@ package xyz.jmburns.rangefun;
 import java.util.Objects;
 import java.util.PrimitiveIterator;
 
+/**
+ * The other half of the public API, this class provides a 'fluent' way to create
+ * and customise ranges.
+ */
 public class RangeBuilder implements Iterable<Integer> {
     private int start;
     private int end;
@@ -65,6 +69,10 @@ public class RangeBuilder implements Iterable<Integer> {
     /**
      * Sets the 'step' of the range to be built.
      *
+     * Note that if intending to build a descending range (where the 'from' value is greater than the
+     * 'to' value), the value of {@code step} need not be negative, and a negative or positive
+     * {@code step} will have no impact on the function of the range, either way.
+     *
      * @param step The value by which the value returned by the {@code Iterable}'s {@code Iterator}
      *             will change upon each successive call to {@code next()}.
      * @return The same {@code RangeBuilder} object on which this method was called.
@@ -98,7 +106,10 @@ public class RangeBuilder implements Iterable<Integer> {
      * Builds the range, whose {@code Iterator} will generate {@code Integer}
      * values as set by calls to {@code RangeBuilder}'s methods.
      *
-     * @return A new {Iterable<Integer>}, whose {@code Iterator} will generate {@code Integer}
+     * Be aware that there is no functionality in place to ensure that the 'step' value is not
+     * 0, and, if it is, the built range's {@code Iterator} might iterate indefinitely.
+     *
+     * @return A new {@code Iterable<Integer>}, whose {@code Iterator} will generate {@code Integer}
      * values as set by calls to {@code RangeBuilder}'s methods.
      */
     public Iterable<Integer> build() {
@@ -113,6 +124,9 @@ public class RangeBuilder implements Iterable<Integer> {
      *           {@code RangeBuilder}, and is included for convenience, when storing the built
      *           range is not important.
      *
+     * Be aware that there is no functionality in place to ensure that the 'step' value is not
+     * 0, and, if it is, the built range's {@code Iterator} might iterate indefinitely.
+     *
      * @return A new {@code Iterator} for a range built using the current values set
      *         for this {@code RangeBuilder}.
      */
@@ -121,12 +135,14 @@ public class RangeBuilder implements Iterable<Integer> {
         return (PrimitiveIterator.OfInt) build().iterator();
     }
 
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return String.format("RangeBuilder{start=%s, end=%s, step=%s}",
                             start, end, step);
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -143,6 +159,7 @@ public class RangeBuilder implements Iterable<Integer> {
                 step == other.step;
     }
 
+    /** {@inheritDoc} */
     @Override
     public int hashCode() {
         return Objects.hash(start, end, step);

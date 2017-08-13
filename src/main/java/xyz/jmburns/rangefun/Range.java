@@ -20,6 +20,11 @@
  */
 package xyz.jmburns.rangefun;
 
+/**
+ * This class has no function on its own, but, along with {@code RangeBuilder}, serves
+ * as the public API for the Range Fun(ctions) library, and is intended to be used in
+ * most cases where ranges are created.
+ */
 public class Range {
     private static final int DEFAULT_STEP = 1;
 
