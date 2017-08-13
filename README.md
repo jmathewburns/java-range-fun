@@ -20,9 +20,10 @@ Using the library, you can write simple code, maintain a good level of abstracti
 
 The best demonstration of the library is in the tests. However, for the sake of "readme-completeness", I've compiled some small examples of what's possible.
 
-*_Note:_*
+*Note:*
 ```Range.of()``` returns an Iterable<Integer> that is mostly intended to be used in an enhanced-for loop to supply the desired indices as you need them. Also, all calls to ```Range.of()``` can be substituted with a call to ```Range.range()```, a convenience method to preserve readability when ```Range``` is statically imported.
 
+<br>
 
 Basic range from x to y, inclusive:
 ```java
@@ -32,8 +33,9 @@ or:
 ```java
 Range.of(x, y)
 ```
-Generates: ```x, x + 1, x + 2, ..., Z```
+Generates: ```x, x + 1, x + 2, ..., y```
 
+<br>
 
 Range from x to y with a custom step of z:
 ```java
@@ -45,6 +47,7 @@ Range.of(x, y, z)
 ```
 Generates: ```x, x + z, x + 2*z, ...```
 
+<br>
 
 Range of all the indices of an array:
 ```java
@@ -52,6 +55,7 @@ Range.of(array)
 ```
 Generates: ```0, 1, 2, ..., array.length - 1```
 
+<br>
 
 Range of all the indices of an array, backwards:
 ```java
@@ -59,6 +63,7 @@ Range.of(array).reverse()
 ```
 Generates: ```array.length - 1, array.length - 2, ..., 0```
 
+<br>
 
 Range of x to y with a custom step of z, backwards:
 ```java
@@ -66,6 +71,7 @@ Range.of(x).to(y).step(z).reverse()
 ```
 Generates: ```y, y - z, y - 2*z, ...```
 
+<br>
 
 And finally, a practical example. Copying over an array.
 
