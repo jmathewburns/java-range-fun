@@ -34,7 +34,7 @@ final class RangeInternal implements Iterable<Integer> {
         this.end = end;
         this.step = step;
 
-        backwards = (start > end || step < 0);
+        backwards = (start > end);
     }
 
     @Override
