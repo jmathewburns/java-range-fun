@@ -24,6 +24,10 @@ import java.util.NoSuchElementException;
 import java.util.Objects;
 import java.util.PrimitiveIterator;
 
+/**
+ * This class provides part core functionality of the Range Fun(ctions)
+ * library.
+ */
 class SimpleRangeIterator implements PrimitiveIterator.OfInt {
     private final int step;
     private final int end;

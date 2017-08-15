@@ -23,6 +23,10 @@ package xyz.jmburns.rangefun;
 import java.util.Objects;
 import java.util.PrimitiveIterator;
 
+/**
+ * This class represents the actual, immutable range of integers built by {@code RangeBuilder}
+ * and the {@code xyz.jmburns.rangefun.Range} API.
+ */
 final class RangeInternal implements Iterable<Integer> {
     private final int start;
     private final int end;
@@ -37,6 +41,16 @@ final class RangeInternal implements Iterable<Integer> {
         backwards = (start > end);
     }
 
+    /**
+     * Returns a new {@code Iterator} for this range.
+     *
+     * @implNote If a backwards iteration is detected, the returned Iterator
+     *           is an instance of {@code ReverseRangeIterator}, otherwise
+     *           it is a {@code SimpleRangeIterator}.
+     *
+     * @return A new {@code Iterator} using the values passed
+     *         to this range during creation.
+     */
     @Override
     public PrimitiveIterator.OfInt iterator() {
         if (backwards) {
