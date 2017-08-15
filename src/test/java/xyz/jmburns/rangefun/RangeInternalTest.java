@@ -24,15 +24,15 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class RangeImplTest {
+public class RangeInternalTest {
     @Test
     public void shouldCreateRangeImplementation() {
-        new RangeImpl(1, 2, 3);
+        new RangeInternal(1, 2, 3);
     }
 
     @Test
     public void shouldReturnCorrectIterator() {
-        RangeImpl range = new RangeImpl(0, 4, 2);
+        RangeInternal range = new RangeInternal(0, 4, 2);
         int[] expectedIntegers = {0, 2, 4};
 
         assertTrue(RangeTestHelper.rangeReturnsExpectedInts(range, expectedIntegers));
@@ -40,40 +40,40 @@ public class RangeImplTest {
 
     @Test
     public void shouldReflectGivenValuesInToString() {
-        String expected = "RangeImpl{start=0, end=10, step=5}";
-        RangeImpl range = new RangeImpl(0, 10, 5);
+        String expected = "RangeInternal{start=0, end=10, step=5}";
+        RangeInternal range = new RangeInternal(0, 10, 5);
 
         assertEquals(expected, range.toString());
     }
 
     @Test
     public void shouldBeEqual() {
-        RangeImpl range1 = new RangeImpl(0, 10, 5);
-        RangeImpl range2 = new RangeImpl(0, 10, 5);
+        RangeInternal range1 = new RangeInternal(0, 10, 5);
+        RangeInternal range2 = new RangeInternal(0, 10, 5);
 
         assertTrue(range1.equals(range2));
     }
 
     @Test
     public void shouldBeUnEqual() {
-        RangeImpl range1 = new RangeImpl(0, 10, 5);
-        RangeImpl range2 = new RangeImpl(0, 4, 2);
+        RangeInternal range1 = new RangeInternal(0, 10, 5);
+        RangeInternal range2 = new RangeInternal(0, 4, 2);
 
         assertFalse(range1.equals(range2));
     }
 
     @Test
     public void shouldReturnSameHashForEqualRanges() {
-        RangeImpl range1 = new RangeImpl(0, 10, 5);
-        RangeImpl range2 = new RangeImpl(0, 10, 5);
+        RangeInternal range1 = new RangeInternal(0, 10, 5);
+        RangeInternal range2 = new RangeInternal(0, 10, 5);
 
         assertEquals(range1.hashCode(), range2.hashCode());
     }
 
     @Test
     public void shouldReturnDifferentHashForDifferentRanges() {
-        RangeImpl range1 = new RangeImpl(0, 10, 5);
-        RangeImpl range2 = new RangeImpl(0, 4, 2);
+        RangeInternal range1 = new RangeInternal(0, 10, 5);
+        RangeInternal range2 = new RangeInternal(0, 4, 2);
 
         assertNotEquals(range1.hashCode(), range2.hashCode());
     }

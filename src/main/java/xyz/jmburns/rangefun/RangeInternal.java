@@ -23,13 +23,13 @@ package xyz.jmburns.rangefun;
 import java.util.Objects;
 import java.util.PrimitiveIterator;
 
-final class RangeImpl implements Iterable<Integer> {
+final class RangeInternal implements Iterable<Integer> {
     private final int start;
     private final int end;
     private final int step;
     private final boolean backwards;
 
-    RangeImpl(int start, int end, int step) {
+    RangeInternal(int start, int end, int step) {
         this.start = start;
         this.end = end;
         this.step = step;
@@ -37,11 +37,6 @@ final class RangeImpl implements Iterable<Integer> {
         backwards = (start > end || step < 0);
     }
 
-    /**
-     * Returns an iterator over elements of type {@code Integer}.
-     *
-     * @return an Iterator.
-     */
     @Override
     public PrimitiveIterator.OfInt iterator() {
         if (backwards) {
@@ -52,7 +47,7 @@ final class RangeImpl implements Iterable<Integer> {
 
     @Override
     public String toString() {
-        return String.format("RangeImpl{start=%s, end=%s, step=%s}",
+        return String.format("RangeInternal{start=%s, end=%s, step=%s}",
                              start, end, step);
     }
 
@@ -65,7 +60,7 @@ final class RangeImpl implements Iterable<Integer> {
             return false;
         }
 
-        RangeImpl other = (RangeImpl) o;
+        RangeInternal other = (RangeInternal) o;
 
         return start == other.start &&
                 end == other.end &&

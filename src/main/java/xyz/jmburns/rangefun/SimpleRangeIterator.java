@@ -54,13 +54,7 @@ class SimpleRangeIterator implements PrimitiveIterator.OfInt {
         }
     }
 
-    /**
-     * Returns {@code true} if the iteration has more elements.
-     * (In other words, returns {@code true} if {@link #next} would
-     * return an element rather than throwing an exception.)
-     *
-     * @return {@code true} if the iteration has more elements
-     */
+    /** @return {@code false} if the end of the range has been reached. */
     @Override
     public boolean hasNext() {
         return current <= end;

@@ -52,7 +52,7 @@ public class Range {
      *         given values.
      */
     public static Iterable<Integer> of(int start, int end, int step) {
-        return new RangeImpl(start, end, step);
+        return new RangeInternal(start, end, step);
     }
 
     /**

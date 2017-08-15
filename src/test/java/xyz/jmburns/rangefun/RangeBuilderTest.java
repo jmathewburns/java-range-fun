@@ -37,8 +37,8 @@ public class RangeBuilderTest {
         int end = 8;
         int step = 4;
 
-        RangeImpl expected = new RangeImpl(start, end, step);
-        RangeImpl actual = (RangeImpl) new RangeBuilder()
+        RangeInternal expected = new RangeInternal(start, end, step);
+        RangeInternal actual = (RangeInternal) new RangeBuilder()
                                             .from(start)
                                             .to(end)
                                             .step(step)

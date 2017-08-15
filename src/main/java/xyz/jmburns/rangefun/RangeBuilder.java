@@ -113,7 +113,7 @@ public class RangeBuilder implements Iterable<Integer> {
      * values as set by calls to {@code RangeBuilder}'s methods.
      */
     public Iterable<Integer> build() {
-        return new RangeImpl(start, end, step);
+        return new RangeInternal(start, end, step);
     }
 
     /**
