@@ -34,7 +34,7 @@ public class SimpleRangeIteratorTest {
         int[] expectedIntegers = { 1, 2, 3, };
         Iterator<Integer> rangeIterator = new SimpleRangeIterator(1, 3, 1);
 
-        assertTrue(RangeTestHelper.rangeReturnsExpectedInts(rangeIterator, expectedIntegers));
+        assertTrue(rangeReturnsExpectedInts(rangeIterator, expectedIntegers));
     }
 
     @Test
@@ -42,7 +42,7 @@ public class SimpleRangeIteratorTest {
         int[] expectedIntegers = { 1, 3, 5, };
         Iterator<Integer> rangeIterator = new SimpleRangeIterator(1, 6, 2);
 
-        assertTrue(RangeTestHelper.rangeReturnsExpectedInts(rangeIterator, expectedIntegers));
+        assertTrue(rangeReturnsExpectedInts(rangeIterator, expectedIntegers));
     }
 
     @Test

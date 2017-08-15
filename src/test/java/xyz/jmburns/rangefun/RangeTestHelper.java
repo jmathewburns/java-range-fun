@@ -43,6 +43,15 @@ class RangeTestHelper {
         return rangeReturnsExpectedInts(rangeIterator, expectedInts);
     }
 
+    /**
+     * Tests if the given {@code Iterator} returns no more and no less than all of the integers
+     * in {@code expectedInts}, in order.
+     *
+     * @param rangeIterator The Iterator to be tested.
+     * @param expectedInts The integers that should be returned by {@code interval}.
+     * @return {@code true} if {@code interval} is the same size as {@code expectedInts} and
+     * returns the values of {@code expectedInts}, in order, {@code false} otherwise.
+     */
     static boolean rangeReturnsExpectedInts(Iterator<Integer> rangeIterator, int[] expectedInts) {
         int currentIndex = 0;
         int rangeSize = 0;
@@ -50,7 +59,7 @@ class RangeTestHelper {
         while (rangeIterator.hasNext()) {
             int current = rangeIterator.next();
 
-            if (!intAtIndexEqualsExpected(expectedInts, currentIndex, current)) {
+            if (!intAtIndexIsExpected(expectedInts, currentIndex, current)) {
                 return false;
             }
 
@@ -61,7 +70,7 @@ class RangeTestHelper {
         return rangeSize == expectedInts.length;
     }
 
-    private static boolean intAtIndexEqualsExpected(int[] array, int index, int expected) {
+    private static boolean intAtIndexIsExpected(int[] array, int index, int expected) {
         if (index < 0 || index >= array.length) {
             return false;
         }

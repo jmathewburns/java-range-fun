@@ -23,7 +23,6 @@ package xyz.jmburns.rangefun;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
-
 import static xyz.jmburns.rangefun.RangeTestHelper.rangeReturnsExpectedInts;
 
 public class RangeInternalTest {
