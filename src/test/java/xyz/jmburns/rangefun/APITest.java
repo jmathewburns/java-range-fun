@@ -24,6 +24,7 @@ import org.junit.Test;
 
 import java.util.Iterator;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static xyz.jmburns.rangefun.RangeTestHelper.rangeReturnsExpectedInts;
@@ -129,8 +130,8 @@ public class APITest {
 
     @Test
     public void shouldReturnCorrectRangeOfDoubleArray() {
-        double[] array = new double[6];
-        int[] expectedIntegers = { 0, 1, 2, 3, 4, 5, };
+        double[] array = new double[3];
+        int[] expectedIntegers = { 0, 1, 2, };
 
         Iterable<Integer> range = Range.of(array);
 
@@ -139,8 +140,8 @@ public class APITest {
 
     @Test
     public void shouldReturnCorrectRangeOfByteArray() {
-        byte[] array = new byte[6];
-        int[] expectedIntegers = { 0, 1, 2, 3, 4, 5, };
+        byte[] array = new byte[1];
+        int[] expectedIntegers = { 0, };
 
         Iterable<Integer> range = Range.of(array);
 
@@ -149,8 +150,8 @@ public class APITest {
 
     @Test
     public void shouldReturnCorrectRangeOfCharArray() {
-        char[] array = new char[6];
-        int[] expectedIntegers = { 0, 1, 2, 3, 4, 5, };
+        char[] array = new char[5];
+        int[] expectedIntegers = { 0, 1, 2, 3, 4, };
 
         Iterable<Integer> range = Range.of(array);
 
@@ -159,8 +160,8 @@ public class APITest {
 
     @Test
     public void shouldReturnCorrectRangeOfShortArray() {
-        short[] array = new short[6];
-        int[] expectedIntegers = { 0, 1, 2, 3, 4, 5, };
+        short[] array = new short[4];
+        int[] expectedIntegers = { 0, 1, 2, 3, };
 
         Iterable<Integer> range = Range.of(array);
 

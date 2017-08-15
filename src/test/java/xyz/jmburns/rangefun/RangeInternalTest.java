@@ -24,6 +24,8 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
+import static xyz.jmburns.rangefun.RangeTestHelper.rangeReturnsExpectedInts;
+
 public class RangeInternalTest {
     @Test
     public void shouldCreateRangeImplementation() {
@@ -35,7 +37,7 @@ public class RangeInternalTest {
         RangeInternal range = new RangeInternal(0, 4, 2);
         int[] expectedIntegers = {0, 2, 4};
 
-        assertTrue(RangeTestHelper.rangeReturnsExpectedInts(range, expectedIntegers));
+        assertTrue(rangeReturnsExpectedInts(range, expectedIntegers));
     }
 
     @Test

@@ -24,7 +24,8 @@ import org.junit.Test;
 
 import java.util.Iterator;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 import static xyz.jmburns.rangefun.RangeTestHelper.rangeReturnsExpectedInts;
 
 public class SimpleRangeIteratorTest {
@@ -42,5 +43,80 @@ public class SimpleRangeIteratorTest {
         Iterator<Integer> rangeIterator = new SimpleRangeIterator(1, 6, 2);
 
         assertTrue(RangeTestHelper.rangeReturnsExpectedInts(rangeIterator, expectedIntegers));
+    }
+
+    @Test
+    public void shouldNotHaveNextForMalformedRange() {
+        int start = 6;
+        int end = 0;
+        int step = 3;
+
+        Iterator<Integer> iterator = new SimpleRangeIterator(start, end, step);
+
+        assertFalse(iterator.hasNext());
+    }
+
+    @Test
+    public void equivalentIteratorsShouldBeEqual() {
+        int start = 6;
+        int end = 0;
+        int step = 3;
+
+        Iterator<Integer> iterator1 = new SimpleRangeIterator(start, end, step);
+        Iterator<Integer> iterator2 = new SimpleRangeIterator(start, end, step);
+
+        assertEquals(iterator1, iterator2);
+    }
+
+    @Test
+    public void nonEquivalentIteratorsShouldBeUnequal() {
+        int start = 6;
+        int end = 0;
+        int step = 3;
+
+        Iterator<Integer> iterator1 = new SimpleRangeIterator(start, end, step + 1);
+        Iterator<Integer> iterator2 = new SimpleRangeIterator(start, end, step);
+
+        assertNotEquals(iterator1, iterator2);
+    }
+
+    @Test
+    public void equivalentIteratorsShouldReturnEqualHashCodes() {
+        int start = 6;
+        int end = 0;
+        int step = 3;
+
+        Iterator<Integer> iterator1 = new SimpleRangeIterator(start, end, step);
+        Iterator<Integer> iterator2 = new SimpleRangeIterator(start, end, step);
+
+        assertEquals(iterator1.hashCode(), iterator2.hashCode());
+    }
+
+    @Test
+    public void nonEquivalentIteratorsShouldReturnUnequalHashCodes() {
+        int start = 6;
+        int end = 0;
+        int step = 3;
+
+        Iterator<Integer> iterator1 = new SimpleRangeIterator(start, end, step + 1);
+        Iterator<Integer> iterator2 = new SimpleRangeIterator(start, end, step);
+
+        assertNotEquals(iterator1.hashCode(), iterator2.hashCode());
+    }
+
+    @Test
+    public void shouldReflectGivenValuesInToString() {
+        int start = 0;
+        int end = 8;
+        int step = 4;
+        Iterator<Integer> iterator = new SimpleRangeIterator(start, end, step);
+        String expectedToString = String.format(
+                "SimpleRangeIterator{step=%s, end=%s, current=%s}",
+                step, end, start
+        );
+
+        String actualToString = iterator.toString();
+
+        assertEquals(expectedToString, actualToString);
     }
 }

@@ -24,7 +24,7 @@ import org.junit.Test;
 
 import java.util.Iterator;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 import static xyz.jmburns.rangefun.RangeTestHelper.rangeReturnsExpectedInts;
 
 public class ReverseRangeIteratorTest {
@@ -42,5 +42,80 @@ public class ReverseRangeIteratorTest {
         Iterator<Integer> rangeIterator = new ReverseRangeIterator(6, 1, 2);
 
         assertTrue(RangeTestHelper.rangeReturnsExpectedInts(rangeIterator, expectedIntegers));
+    }
+
+    @Test
+    public void shouldNotHaveNextForMalformedRange() {
+        int start = 0;
+        int end = 6;
+        int step = 3;
+
+        Iterator<Integer> iterator = new ReverseRangeIterator(start, end, step);
+
+        assertFalse(iterator.hasNext());
+    }
+
+    @Test
+    public void equivalentIteratorsShouldBeEqual() {
+        int start = 6;
+        int end = 0;
+        int step = 3;
+
+        Iterator<Integer> iterator1 = new ReverseRangeIterator(start, end, step);
+        Iterator<Integer> iterator2 = new ReverseRangeIterator(start, end, step);
+
+        assertEquals(iterator1, iterator2);
+    }
+
+    @Test
+    public void nonEquivalentIteratorsShouldBeUnequal() {
+        int start = 6;
+        int end = 0;
+        int step = 3;
+
+        Iterator<Integer> iterator1 = new ReverseRangeIterator(start, end, step + 1);
+        Iterator<Integer> iterator2 = new ReverseRangeIterator(start, end, step);
+
+        assertNotEquals(iterator1, iterator2);
+    }
+
+    @Test
+    public void equivalentIteratorsShouldReturnEqualHashCodes() {
+        int start = 6;
+        int end = 0;
+        int step = 3;
+
+        Iterator<Integer> iterator1 = new ReverseRangeIterator(start, end, step);
+        Iterator<Integer> iterator2 = new ReverseRangeIterator(start, end, step);
+
+        assertEquals(iterator1.hashCode(), iterator2.hashCode());
+    }
+
+    @Test
+    public void nonEquivalentIteratorsShouldReturnUnequalHashCodes() {
+        int start = 6;
+        int end = 0;
+        int step = 3;
+
+        Iterator<Integer> iterator1 = new ReverseRangeIterator(start, end, step + 1);
+        Iterator<Integer> iterator2 = new ReverseRangeIterator(start, end, step);
+
+        assertNotEquals(iterator1.hashCode(), iterator2.hashCode());
+    }
+
+    @Test
+    public void shouldReflectGivenValuesInToString() {
+        int start = 0;
+        int end = 8;
+        int step = 4;
+        Iterator<Integer> iterator = new ReverseRangeIterator(start, end, step);
+        String expectedToString = String.format(
+                "ReverseRangeIterator{step=%s, end=%s, current=%s}",
+                step, end, start
+        );
+
+        String actualToString = iterator.toString();
+
+        assertEquals(expectedToString, actualToString);
     }
 }

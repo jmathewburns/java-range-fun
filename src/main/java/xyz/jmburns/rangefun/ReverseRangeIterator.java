@@ -86,7 +86,7 @@ class ReverseRangeIterator implements PrimitiveIterator.OfInt {
     @Override
     public String toString() {
         return String.format(
-                "SimpleRangeIterator{step=%s, end=%s, current=%s}",
+                "ReverseRangeIterator{step=%s, end=%s, current=%s}",
                 step, end, current
         );
     }

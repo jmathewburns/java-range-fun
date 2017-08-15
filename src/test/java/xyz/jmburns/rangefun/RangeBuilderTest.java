@@ -20,9 +20,11 @@
  */
 package xyz.jmburns.rangefun;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 import static xyz.jmburns.rangefun.RangeTestHelper.rangeReturnsExpectedInts;
 
 public class RangeBuilderTest {
@@ -32,7 +34,7 @@ public class RangeBuilderTest {
     }
 
     @Test
-    public void shouldCreateEquivalentRangeImpl() {
+    public void shouldCreateEquivalentRanges() {
         int start = 0;
         int end = 8;
         int step = 4;
@@ -69,5 +71,96 @@ public class RangeBuilderTest {
 
         assertEquals(builder.build().iterator(),
                      builder.iterator());
+    }
+
+    @Test
+    public void equivalentBuildersShouldBeEqual() {
+        int start = 0;
+        int end = 8;
+        int step = 4;
+
+        RangeBuilder builder1 = new RangeBuilder()
+                .from(start)
+                .to(end)
+                .step(step);
+        RangeBuilder builder2 = new RangeBuilder()
+                .from(start)
+                .to(end)
+                .step(step);
+
+        assertEquals(builder1, builder2);
+    }
+
+    @Test
+    public void nonEquivalentBuildersShouldBeUnequal() {
+        int start = 0;
+        int end = 8;
+        int step = 4;
+
+        RangeBuilder builder1 = new RangeBuilder()
+                .from(start)
+                .to(end)
+                .step(step);
+        RangeBuilder builder2 = new RangeBuilder()
+                .from(start)
+                .to(end + 1)
+                .step(step);
+
+        assertNotEquals(builder1, builder2);
+    }
+
+    @Test
+    public void equalRangesShouldReturnEqualHashCodes() {
+        int start = 0;
+        int end = 8;
+        int step = 4;
+
+        RangeBuilder builder1 = new RangeBuilder()
+                .from(start)
+                .to(end)
+                .step(step);
+        RangeBuilder builder2 = new RangeBuilder()
+                .from(start)
+                .to(end)
+                .step(step);
+
+        assertEquals(builder1.hashCode(), builder2.hashCode());
+    }
+
+    @Test
+    public void unequalRangesShouldReturnUnequalHashCodes() {
+        int start = 0;
+        int end = 8;
+        int step = 4;
+
+        RangeBuilder builder1 = new RangeBuilder()
+                .from(start)
+                .to(end)
+                .step(step);
+        RangeBuilder builder2 = new RangeBuilder()
+                .from(start)
+                .to(end)
+                .step(step + 1);
+
+        assertNotEquals(builder1.hashCode(), builder2.hashCode());
+    }
+
+    @Test
+    public void shouldReflectGivenValuesInToString() {
+        int start = 0;
+        int end = 8;
+        int step = 4;
+        RangeBuilder builder = new RangeBuilder()
+                .from(start)
+                .to(end)
+                .step(step);
+        String expectedToString = String.format(
+                "RangeBuilder{start=%s, end=%s, step=%s}",
+                start, end, step
+        );
+
+        String actualToString = builder.toString();
+
+        assertEquals(expectedToString, actualToString);
     }
 }
