@@ -28,17 +28,26 @@ import java.util.PrimitiveIterator;
  * and the {@code xyz.jmburns.rangefun.Range} API.
  */
 final class RangeInternal implements Iterable<Integer> {
+
     private final int start;
     private final int end;
     private final int step;
     private final boolean backwards;
 
     RangeInternal(int start, int end, int step) {
-        this.start = start;
-        this.end = end;
-        this.step = step;
+        this(start, end, step, false);
+    }
 
-        backwards = (start > end);
+    RangeInternal(int start, int end, int step, boolean halfClosed) {
+        this.start = start;
+        this.step = step;
+        this.backwards = (start > end);
+
+        int adjustedEnd = end;
+        if (halfClosed) {
+            adjustedEnd = backwards ? end + 1: end - 1;
+        }
+        this.end = adjustedEnd;
     }
 
     /**
