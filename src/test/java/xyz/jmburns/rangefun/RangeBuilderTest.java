@@ -24,6 +24,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertTrue;
 import static xyz.jmburns.rangefun.RangeTestHelper.rangeReturnsExpectedInts;
 
 public class RangeBuilderTest {
@@ -49,6 +50,18 @@ public class RangeBuilderTest {
     }
 
     @Test
+    public void shouldCreateHalfClosedRange() {
+        int[] expectedIntegers = { 0, 1, 2, 3, 4 };
+        Iterable<Integer> range = new RangeBuilder()
+                .from(0)
+                .until(5)
+                .step(1)
+                .build();
+
+        assertTrue(rangeReturnsExpectedInts(range, expectedIntegers));
+    }
+
+    @Test
     public void shouldCreateReversedRange() {
         int[] expectedIntegers = { 8, 6, 4, 2, 0, };
         Iterable<Integer> range = new RangeBuilder()
@@ -58,7 +71,18 @@ public class RangeBuilderTest {
                                         .reverse()
                                         .build();
 
-        rangeReturnsExpectedInts(range, expectedIntegers);
+        assertTrue(rangeReturnsExpectedInts(range, expectedIntegers));
+    }
+
+    @Test
+    public void shouldCreateBackwardsHalfClosedRange() {
+        int[] expectedIntegers = { 9, 8, 7, 6, 5, };
+        Iterable<Integer> range = new RangeBuilder()
+                .from(9)
+                .until(4)
+                .step(1)
+                .build();
+        assertTrue(rangeReturnsExpectedInts(range, expectedIntegers));
     }
 
     @Test

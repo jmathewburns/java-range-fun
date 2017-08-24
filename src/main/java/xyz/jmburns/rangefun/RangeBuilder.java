@@ -31,6 +31,8 @@ public class RangeBuilder implements Iterable<Integer> {
     private int start;
     private int end;
     private int step;
+    private boolean halfClosed = false;
+
 
     /**
      * Creates a new {@code RangeBuilder} with 'from', 'to', and 'step' value of 0.
@@ -62,6 +64,23 @@ public class RangeBuilder implements Iterable<Integer> {
      */
     public RangeBuilder to(int end) {
         this.end = end;
+        this.halfClosed = false;
+
+        return this;
+    }
+
+    /**
+     * Sets the end of the half-closed range to be built. The given value will NOT be returned
+     * by the built range's {@code Iterator}.
+     *
+     * @param end The end of the range. This value will not be returned by the built
+     *            range's {@code Iterator}.
+     * @return The same {@code RangeBuilder} object on which this method was called.
+     * @since 0.1.2
+     */
+    public RangeBuilder until(int end) {
+        this.end = end;
+        this.halfClosed = true;
 
         return this;
     }
@@ -113,7 +132,7 @@ public class RangeBuilder implements Iterable<Integer> {
      * values as set by calls to {@code RangeBuilder}'s methods.
      */
     public Iterable<Integer> build() {
-        return new RangeInternal(start, end, step);
+        return new RangeInternal(start, end, step, halfClosed);
     }
 
     /**
