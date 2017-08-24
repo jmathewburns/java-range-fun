@@ -76,7 +76,7 @@ public class RangeBuilder implements Iterable<Integer> {
      * @param end The end of the range. This value will not be returned by the built
      *            range's {@code Iterator}.
      * @return The same {@code RangeBuilder} object on which this method was called.
-     * @since 0.1.2
+     * @since 1.2.0
      */
     public RangeBuilder until(int end) {
         this.end = end;

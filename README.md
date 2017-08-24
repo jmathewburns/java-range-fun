@@ -37,6 +37,16 @@ Generates: ```x, x + 1, x + 2, ..., y```
 
 <br>
 
+Basic range from x to y, exclusive:
+```java
+Range.of(x).until(y)
+```
+or:
+```java
+Range.of(x, y - 1)
+```
+Generates: ```x, x + 1, x + 2, ..., y - 1```
+
 Range from x to y with a custom step of z:
 ```java
 Range.of(x).to(y).step(z)
@@ -52,6 +62,10 @@ Generates: ```x, x + z, x + 2*z, ...```
 Range of all the indices of an array:
 ```java
 Range.of(array)
+```
+or:
+```java
+Range.of(0).until(array.length)
 ```
 Generates: ```0, 1, 2, ..., array.length - 1```
 
