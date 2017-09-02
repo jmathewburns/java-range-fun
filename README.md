@@ -1,6 +1,23 @@
 # Range Fun(ctions)
 
-Just a bit of fun with ranges. A small (five-class) library to combine the power of the traditional for loop with the prettiness and simplicity of the for-each.
+Just a bit of fun with ranges. A small (five-class) library to combine the power of the traditional for loop with the prettiness and simplicity of the for-each by providing a set of functions to generate ranges of integers, which can be used as indices.
+
+## Installation
+
+You can find source, javadoc, and binary jars at Maven Central, under the groupId "xyz.jmburns", and the artifactId "rangfun". The latest version is 1.2.0. Using that, you can add the depedency to you project, just like any other.
+
+For example, with Gradle:
+```
+repositories {
+   mavenCentral()
+}
+
+dependencies {
+   compile 'xyz.jmburns:rangefun:1.2.0'
+}
+```
+
+Also, feel free to copy the source code and include it in your own project, under the terms of the [License](./LICENSE).
 
 ## Description
 
