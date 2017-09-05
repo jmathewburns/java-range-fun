@@ -95,132 +95,17 @@ public class Range {
      *           and is intended to serve as a convenience method. Also, it returns a {@code RangeBuilder}
      *           to facilitate easy backwards iteration of the array.
      *
-     * @param array The array from which to derive bounds for the returned {@code RangeBuilder}
+     * @param array The array from which to derive bounds for the returned {@code RangeBuilder}. Note that this 
+     *        object MUST be an array, or an IllegalArgumentException will be thrown.
      * @return A new {@code RangeBuilder} set to build a range over the length of the array.
+     * @throws IllegalArgumentException if the passed argument is not an array.
      */
-    public static RangeBuilder of(Object[] array) {
+    public static RangeBuilder of(Object array) {
+        int length = Array.getLength(array);
+       
         return new RangeBuilder()
                 .from(0)
-                .to(array.length - 1)
-                .step(DEFAULT_STEP);
-    }
-
-    /**
-     * Returns a new {@code RangeBuilder} set to build a range over the length of the array.
-     *
-     * @implNote This method behaves exactly as if chaining {@code Range.of(0).to(array.length - 1).step(1)}
-     *           and is intended to serve as a convenience method. Also, it returns a {@code RangeBuilder}
-     *           to facilitate easy backwards iteration of the array.
-     *
-     * @param array The array from which to derive bounds for the returned {@code RangeBuilder}
-     * @return A new {@code RangeBuilder} set to build a range over the length of the array.
-     */
-    public static RangeBuilder of(int[] array) {
-        return new RangeBuilder()
-                .from(0)
-                .to(array.length - 1)
-                .step(DEFAULT_STEP);
-    }
-
-    /**
-     * Returns a new {@code RangeBuilder} set to build a range over the length of the array.
-     *
-     * @implNote This method behaves exactly as if chaining {@code Range.of(0).to(array.length - 1).step(1)}
-     *           and is intended to serve as a convenience method. Also, it returns a {@code RangeBuilder}
-     *           to facilitate easy backwards iteration of the array.
-     *
-     * @param array The array from which to derive bounds for the returned {@code RangeBuilder}
-     * @return A new {@code RangeBuilder} set to build a range over the length of the array.
-     */
-    public static RangeBuilder of(long[] array) {
-        return new RangeBuilder()
-                .from(0)
-                .to(array.length - 1)
-                .step(DEFAULT_STEP);
-    }
-
-    /**
-     * Returns a new {@code RangeBuilder} set to build a range over the length of the array.
-     *
-     * @implNote This method behaves exactly as if chaining {@code Range.of(0).to(array.length - 1).step(1)}
-     *           and is intended to serve as a convenience method. Also, it returns a {@code RangeBuilder}
-     *           to facilitate easy backwards iteration of the array.
-     *
-     * @param array The array from which to derive bounds for the returned {@code RangeBuilder}
-     * @return A new {@code RangeBuilder} set to build a range over the length of the array.
-     */
-    public static RangeBuilder of(float[] array) {
-        return new RangeBuilder()
-                .from(0)
-                .to(array.length - 1)
-                .step(DEFAULT_STEP);
-    }
-
-    /**
-     * Returns a new {@code RangeBuilder} set to build a range over the length of the array.
-     *
-     * @implNote This method behaves exactly as if chaining {@code Range.of(0).to(array.length - 1).step(1)}
-     *           and is intended to serve as a convenience method. Also, it returns a {@code RangeBuilder}
-     *           to facilitate easy backwards iteration of the array.
-     *
-     * @param array The array from which to derive bounds for the returned {@code RangeBuilder}
-     * @return A new {@code RangeBuilder} set to build a range over the length of the array.
-     */
-    public static RangeBuilder of(double[] array) {
-        return new RangeBuilder()
-                .from(0)
-                .to(array.length - 1)
-                .step(DEFAULT_STEP);
-    }
-
-    /**
-     * Returns a new {@code RangeBuilder} set to build a range over the length of the array.
-     *
-     * @implNote This method behaves exactly as if chaining {@code Range.of(0).to(array.length - 1).step(1)}
-     *           and is intended to serve as a convenience method. Also, it returns a {@code RangeBuilder}
-     *           to facilitate easy backwards iteration of the array.
-     *
-     * @param array The array from which to derive bounds for the returned {@code RangeBuilder}
-     * @return A new {@code RangeBuilder} set to build a range over the length of the array.
-     */
-    public static RangeBuilder of(byte[] array) {
-        return new RangeBuilder()
-                .from(0)
-                .to(array.length - 1)
-                .step(DEFAULT_STEP);
-    }
-
-    /**
-     * Returns a new {@code RangeBuilder} set to build a range over the length of the array.
-     *
-     * @implNote This method behaves exactly as if chaining {@code Range.of(0).to(array.length - 1).step(1)}
-     *           and is intended to serve as a convenience method. Also, it returns a {@code RangeBuilder}
-     *           to facilitate easy backwards iteration of the array.
-     *
-     * @param array The array from which to derive bounds for the returned {@code RangeBuilder}
-     * @return A new {@code RangeBuilder} set to build a range over the length of the array.
-     */
-    public static RangeBuilder of(char[] array) {
-        return new RangeBuilder()
-                .from(0)
-                .to(array.length - 1)
-                .step(DEFAULT_STEP);
-    }
-
-    /**
-     * Returns a new {@code RangeBuilder} set to build a range over the length of the array.
-     *
-     * @implNote This method behaves exactly as if chaining {@code Range.of(0).to(array.length - 1).step(1)}
-     *           and is intended to serve as a convenience method. Also, it returns a {@code RangeBuilder}
-     *           to facilitate easy backwards iteration of the array.
-     *
-     * @param array The array from which to derive bounds for the returned {@code RangeBuilder}
-     * @return A new {@code RangeBuilder} set to build a range over the length of the array.
-     */
-    public static RangeBuilder of(short[] array) {
-        return new RangeBuilder()
-                .from(0)
-                .to(array.length - 1)
+                .to(length - 1)
                 .step(DEFAULT_STEP);
     }
 
@@ -303,152 +188,13 @@ public class Range {
      *           intended to serve as a convenience method to preserve readability when {@code Range}
      *           is statically imported.
      *
-     * @param array The array from which to derive bounds for the returned {@code RangeBuilder}
+     * @param array The array from which to derive bounds for the returned {@code RangeBuilder}. Note that this 
+     *        object MUST be an array, or an IllegalArgumentException will be thrown.
      * @return A new {@code RangeBuilder} set to build a range over the length of the array.
-     *
+     * @throws IllegalArgumentException if the passed argument is not an array.
      * @see Range#of(Object[])
      */
-    public static RangeBuilder range(Object[] array) {
-        return of(array);
-    }
-
-    /**
-     * Returns a new {@code RangeBuilder} set to build a range over the length of the array.
-     *
-     * @implNote This method behaves exactly as if chaining {@code Range.of(0).to(array.length - 1).step(1)}
-     *           and is intended to serve as a convenience method. Also, it returns a {@code RangeBuilder}
-     *           to facilitate easy backwards iteration of the array.
-     *
-     * @implNote This method also behaves exactly as if calling {@code Range.of(array)} and us
-     *           intended to serve as a convenience method to preserve readability when {@code Range}
-     *           is statically imported.
-     *
-     * @param array The array from which to derive bounds for the returned {@code RangeBuilder}
-     * @return A new {@code RangeBuilder} set to build a range over the length of the array.
-     *
-     * @see Range#of(int[])
-     */
-    public static RangeBuilder range(int[] array) {
-        return of(array);
-    }
-
-    /**
-     * Returns a new {@code RangeBuilder} set to build a range over the length of the array.
-     *
-     * @implNote This method behaves exactly as if chaining {@code Range.of(0).to(array.length - 1).step(1)}
-     *           and is intended to serve as a convenience method. Also, it returns a {@code RangeBuilder}
-     *           to facilitate easy backwards iteration of the array.
-     *
-     * @implNote This method also behaves exactly as if calling {@code Range.of(array)} and us
-     *           intended to serve as a convenience method to preserve readability when {@code Range}
-     *           is statically imported.
-     *
-     * @param array The array from which to derive bounds for the returned {@code RangeBuilder}
-     * @return A new {@code RangeBuilder} set to build a range over the length of the array.
-     *
-     * @see Range#of(long[])
-     */
-    public static RangeBuilder range(long[] array) {
-        return of(array);
-    }
-
-    /**
-     * Returns a new {@code RangeBuilder} set to build a range over the length of the array.
-     *
-     * @implNote This method behaves exactly as if chaining {@code Range.of(0).to(array.length - 1).step(1)}
-     *           and is intended to serve as a convenience method. Also, it returns a {@code RangeBuilder}
-     *           to facilitate easy backwards iteration of the array.
-     *
-     * @implNote This method also behaves exactly as if calling {@code Range.of(array)} and us
-     *           intended to serve as a convenience method to preserve readability when {@code Range}
-     *           is statically imported.
-     *
-     * @param array The array from which to derive bounds for the returned {@code RangeBuilder}
-     * @return A new {@code RangeBuilder} set to build a range over the length of the array.
-     *
-     * @see Range#of(float[])
-     */
-    public static RangeBuilder range(float[] array) {
-        return of(array);
-    }
-
-    /**
-     * Returns a new {@code RangeBuilder} set to build a range over the length of the array.
-     *
-     * @implNote This method behaves exactly as if chaining {@code Range.of(0).to(array.length - 1).step(1)}
-     *           and is intended to serve as a convenience method. Also, it returns a {@code RangeBuilder}
-     *           to facilitate easy backwards iteration of the array.
-     *
-     * @implNote This method also behaves exactly as if calling {@code Range.of(array)} and us
-     *           intended to serve as a convenience method to preserve readability when {@code Range}
-     *           is statically imported.
-     *
-     * @param array The array from which to derive bounds for the returned {@code RangeBuilder}
-     * @return A new {@code RangeBuilder} set to build a range over the length of the array.
-     *
-     * @see Range#of(double[])
-     */
-    public static RangeBuilder range(double[] array) {
-        return of(array);
-    }
-
-    /**
-     * Returns a new {@code RangeBuilder} set to build a range over the length of the array.
-     *
-     * @implNote This method behaves exactly as if chaining {@code Range.of(0).to(array.length - 1).step(1)}
-     *           and is intended to serve as a convenience method. Also, it returns a {@code RangeBuilder}
-     *           to facilitate easy backwards iteration of the array.
-     *
-     * @implNote This method also behaves exactly as if calling {@code Range.of(array)} and us
-     *           intended to serve as a convenience method to preserve readability when {@code Range}
-     *           is statically imported.
-     *
-     * @param array The array from which to derive bounds for the returned {@code RangeBuilder}
-     * @return A new {@code RangeBuilder} set to build a range over the length of the array.
-     *
-     * @see Range#of(byte[])
-     */
-    public static RangeBuilder range(byte[] array) {
-        return of(array);
-    }
-
-    /**
-     * Returns a new {@code RangeBuilder} set to build a range over the length of the array.
-     *
-     * @implNote This method behaves exactly as if chaining {@code Range.of(0).to(array.length - 1).step(1)}
-     *           and is intended to serve as a convenience method. Also, it returns a {@code RangeBuilder}
-     *           to facilitate easy backwards iteration of the array.
-     *
-     * @implNote This method also behaves exactly as if calling {@code Range.of(array)} and us
-     *           intended to serve as a convenience method to preserve readability when {@code Range}
-     *           is statically imported.
-     *
-     * @param array The array from which to derive bounds for the returned {@code RangeBuilder}
-     * @return A new {@code RangeBuilder} set to build a range over the length of the array.
-     *
-     * @see Range#of(short[])
-     */
-    public static RangeBuilder range(short[] array) {
-        return of(array);
-    }
-
-    /**
-     * Returns a new {@code RangeBuilder} set to build a range over the length of the array.
-     *
-     * @implNote This method behaves exactly as if chaining {@code Range.of(0).to(array.length - 1).step(1)}
-     *           and is intended to serve as a convenience method. Also, it returns a {@code RangeBuilder}
-     *           to facilitate easy backwards iteration of the array.
-     *
-     * @implNote This method also behaves exactly as if calling {@code Range.of(array)} and us
-     *           intended to serve as a convenience method to preserve readability when {@code Range}
-     *           is statically imported.
-     *
-     * @param array The array from which to derive bounds for the returned {@code RangeBuilder}
-     * @return A new {@code RangeBuilder} set to build a range over the length of the array.
-     *
-     * @see Range#of(char[])
-     */
-    public static RangeBuilder range(char[] array) {
+    public static RangeBuilder range(Object array) {
         return of(array);
     }
 }
