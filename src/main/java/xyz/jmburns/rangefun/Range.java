@@ -110,6 +110,24 @@ public class Range {
     }
 
     /**
+     * Returns a new {@code RangeBuilder} with a 'to' value of {@code end}, a default 'from' value of 1, and a default step of 1.
+     *
+     * This method is intended to serve as a natural entry point into the 'fluent' API provided by
+     * {@code RangeBuilder}.
+     *
+     * @param end The supposed end of the range, passed to RangeBuilder. Can be
+     *        overwritten at a later time through the {@code RangeBuilder} object.
+     * @return A new {@code RangeBuilder} with a 'to' value of {@code end}, a default 'from' value of 1, and a default step of 1.
+     * @see xyz.jmburns.rangefun.RangeBuilder
+     */
+    public static RangeBuilder to(int end) {
+       return new RangeBuilder()
+               .from(1)
+               .to(end)
+               .step(DEFAULT_STEP);
+    }
+    
+    /**
      * Returns a new {@code Iterable<Integer>} set to provide a range for the
      * given values.
      *
