@@ -35,9 +35,9 @@ task sourcesJar(type: Jar) {
 javadoc {
     /* Add support for tasty new Java 8 tags */
     options.tags = [
-            "apiNote:a:API Note:",
-            "implSpec:a:Implementation Requirements:",
-            "implNote:a:Implementation Note:"
+            'apiNote:a:API Note:',
+            'implSpec:a:Implementation Requirements:',
+            'implNote:a:Implementation Note:'
     ]
 }
 
@@ -69,11 +69,11 @@ uploadArchives {
             MavenDeployment deployment -> signing.signPom(deployment)
          }
          
-         repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+         repository(url: 'https://oss.sonatype.org/service/local/staging/deploy/maven2/') {
             authentication(userName: ossrhUserName, password: ossrhPassword)
          }
          
-         snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+         snapshotRepository(url: 'https://oss.sonatype.org/content/repositories/snapshots/') {
             authentication(userName: ossrhUserName, password: ossrhPassword)
          }
          
@@ -85,7 +85,7 @@ uploadArchives {
             url projectGithubUrl
             
             scm {
-               connection 'scm:git:' + projectGithubLink
+               connection "scm:git:$projectGithubLink"
                developerConnection 'scm:git:git@github.com:jmathewburns/rangefun.git'
                url projectGithubLink
             }
@@ -100,9 +100,9 @@ uploadArchives {
             
             developers {
                developer {
-                  id = 'jmathewburns'
-                  name = 'Jacques Burns'
-                  email = 'dev@rangefun.xyz'
+                  id 'jmathewburns'
+                  name 'Jacques Burns'
+                  email 'dev@rangefun.xyz'
                }
             }
          }
