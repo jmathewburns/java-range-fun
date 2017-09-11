@@ -25,7 +25,7 @@ import java.util.Objects;
 import java.util.PrimitiveIterator;
 
 /**
- * This class provides part core functionality of the Range Fun(ctions)
+ * This class provides part core functionality of the Progressions Fun(ctions)
  * library.
  */
 class ReverseRangeIterator implements PrimitiveIterator.OfInt {

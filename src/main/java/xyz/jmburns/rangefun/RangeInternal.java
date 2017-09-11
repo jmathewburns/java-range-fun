@@ -25,7 +25,7 @@ import java.util.PrimitiveIterator;
 
 /**
  * This class represents the actual, immutable range of integers built by {@code RangeBuilder}
- * and the {@code xyz.jmburns.rangefun.Range} API.
+ * and the {@code xyz.jmburns.rangefun.Progressions} API.
  */
 final class RangeInternal implements Iterable<Integer> {
 
