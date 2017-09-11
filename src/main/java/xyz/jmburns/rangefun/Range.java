@@ -20,6 +20,8 @@
  */
 package xyz.jmburns.rangefun;
 
+import java.lang.reflect.Array;
+
 /**
  * This class has no function on its own, but, along with {@code RangeBuilder}, serves
  * as the public API for the Range Fun(ctions) library, and is intended to be used in
@@ -210,7 +212,6 @@ public class Range {
      *        object MUST be an array, or an IllegalArgumentException will be thrown.
      * @return A new {@code RangeBuilder} set to build a range over the length of the array.
      * @throws IllegalArgumentException if the passed argument is not an array.
-     * @see Range#of(Object[])
      */
     public static RangeBuilder range(Object array) {
         return of(array);
