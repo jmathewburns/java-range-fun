@@ -23,12 +23,7 @@ package xyz.jmburns.rangefun;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.Objects;
-import java.util.PrimitiveIterator;
 
-/**
- * This class provides part core functionality progression the Progressions Fun(ctions)
- * library.
- */
 class ReverseProgressionIterator implements Iterator<Integer> {
     private final int step;
     private final int end;
@@ -40,12 +35,6 @@ class ReverseProgressionIterator implements Iterator<Integer> {
         this.step = Math.abs(step);
     }
 
-    /**
-     * Returns the next {@code Integer} element in the range.
-     *
-     * @return The next {@code Integer} element in the range.
-     * @throws NoSuchElementException if the end of the progression has been reached
-     */
     @Override
     public Integer next() {
         if (hasNext()) {
@@ -59,7 +48,6 @@ class ReverseProgressionIterator implements Iterator<Integer> {
         }
     }
 
-    /** @return {@code false} if the end of the progression has been reached. */
     @Override
     public boolean hasNext() {
         return current >= end;
