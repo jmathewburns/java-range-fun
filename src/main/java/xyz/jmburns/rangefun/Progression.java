@@ -127,7 +127,7 @@ public final class Progression implements Iterable<Integer>, Comparable<Progress
      * @return the length of the progression
      */
     public int length() {
-        return (high - low + 1) / step;
+        return ((high - low) / step) + 1;
     }
 
     /**

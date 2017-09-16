@@ -20,7 +20,6 @@
  */
 package xyz.jmburns.rangefun;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.Iterator;
@@ -32,129 +31,119 @@ import static xyz.jmburns.rangefun.ProgressionTestHelper.progressionReturnsExpec
 public class ProgressionsTest {
     @Test
     public void shouldReturnNonNullBasicRange() {
-        Iterable<Integer> range = Progressions.range(1, 3);
+        Progression range = Progressions.range(1, 3);
 
         assertNotNull(range);
     }
-
+    
     @Test
-    public void shouldReturnNonNullBasicIterator() {
-        Iterable<Integer> range = Progressions.range(1, 3);
+    public void shouldReturnNonNullProgression() {
+        Progression progression = Progressions.progression(0, 4, 2);
 
-        Iterator<Integer> rangeIterator = range.iterator();
-
-        assertNotNull(rangeIterator);
-    }
-
-    @Test
-    public void shouldReturnNonNullSteppedRange() {
-        Iterable<Integer> range = Progressions.progression(0, 4, 2);
-
-        assertNotNull(range);
-    }
-
-    @Test
-    public void shouldReturnNonNullSteppedIterator() {
-        Iterable<Integer> range = Progressions.progression(0, 4, 2);
-
-        Iterator<Integer> rangeIterator = range.iterator();
-
-        assertNotNull(rangeIterator);
+        assertNotNull(progression);
     }
 
     @Test
     public void shouldReturnCorrectRange() {
-        Iterable<Integer> range = Progressions.range(1, 3);
-        int[] expectedIntegers = {1, 2, 3};
+        Progression range = Progressions.range(1, 3);
+        int[] expected = {1, 2, 3};
 
-        assertTrue(progressionReturnsExpectedInts(range, expectedIntegers));
+        assertTrue(progressionReturnsExpectedInts(range, expected));
     }
 
     @Test
     public void shouldReturnCorrectProgression() {
-        Iterable<Integer> range = Progressions.progression(0, 4, 2);
-        int[] expectedIntegers = {0, 2, 4};
+        Progression progression = Progressions.progression(0, 4, 2);
+        int[] expected = {0, 2, 4};
 
-        assertTrue(progressionReturnsExpectedInts(range, expectedIntegers));
+        assertTrue(progressionReturnsExpectedInts(progression, expected));
+    }
+
+    @Test
+    public void shouldReturnCorrectCount() {
+        Progression count = Progressions.count(4);
+        int[] expected = {0, 1, 2, 3};
+
+        assertTrue(progressionReturnsExpectedInts(count, expected));
     }
 
     @Test
     public void shouldReturnCorrectRangeOfObjectArray() {
         Object[] array = new Object[6];
-        int[] expectedIntegers = { 0, 1, 2, 3, 4, 5, };
+        int[] expected = { 0, 1, 2, 3, 4, 5, };
 
-        Iterable<Integer> range = Progressions.range(array);
+        Progression range = Progressions.indices(array);
 
-        assertTrue(progressionReturnsExpectedInts(range, expectedIntegers));
+        assertTrue(progressionReturnsExpectedInts(range, expected));
     }
 
     @Test
     public void shouldReturnCorrectRangeOfIntArray() {
         int[] array = new int[6];
-        int[] expectedIntegers = { 0, 1, 2, 3, 4, 5, };
+        int[] expected = { 0, 1, 2, 3, 4, 5, };
 
-        Iterable<Integer> range = Progressions.range(array);
+        Progression range = Progressions.indices(array);
 
-        assertTrue(progressionReturnsExpectedInts(range, expectedIntegers));
+        assertTrue(progressionReturnsExpectedInts(range, expected));
     }
 
     @Test
     public void shouldReturnCorrectRangeOfLongArray() {
         long[] array = new long[6];
-        int[] expectedIntegers = { 0, 1, 2, 3, 4, 5, };
+        int[] expected = { 0, 1, 2, 3, 4, 5, };
 
-        Iterable<Integer> range = Progressions.range(array);
+        Progression range = Progressions.indices(array);
 
-        assertTrue(progressionReturnsExpectedInts(range, expectedIntegers));
+        assertTrue(progressionReturnsExpectedInts(range, expected));
     }
 
     @Test
     public void shouldReturnCorrectRangeOfFloatArray() {
         float[] array = new float[6];
-        int[] expectedIntegers = { 0, 1, 2, 3, 4, 5, };
+        int[] expected = { 0, 1, 2, 3, 4, 5, };
 
-        Iterable<Integer> range = Progressions.range(array);
+        Progression range = Progressions.indices(array);
 
-        assertTrue(progressionReturnsExpectedInts(range, expectedIntegers));
+        assertTrue(progressionReturnsExpectedInts(range, expected));
     }
 
     @Test
     public void shouldReturnCorrectRangeOfDoubleArray() {
         double[] array = new double[3];
-        int[] expectedIntegers = { 0, 1, 2, };
+        int[] expected = { 0, 1, 2, };
 
-        Iterable<Integer> range = Progressions.range(array);
+        Progression range = Progressions.indices(array);
 
-        assertTrue(progressionReturnsExpectedInts(range, expectedIntegers));
+        assertTrue(progressionReturnsExpectedInts(range, expected));
     }
 
     @Test
     public void shouldReturnCorrectRangeOfByteArray() {
         byte[] array = new byte[1];
-        int[] expectedIntegers = { 0, };
+        int[] expected = { 0, };
 
-        Iterable<Integer> range = Progressions.range(array);
+        Progression range = Progressions.indices(array);
 
-        assertTrue(progressionReturnsExpectedInts(range, expectedIntegers));
+        assertTrue(progressionReturnsExpectedInts(range, expected));
     }
 
     @Test
     public void shouldReturnCorrectRangeOfCharArray() {
         char[] array = new char[5];
-        int[] expectedIntegers = { 0, 1, 2, 3, 4, };
+        int[] expected = { 0, 1, 2, 3, 4, };
 
-        Iterable<Integer> range = Progressions.range(array);
+        Progression range = Progressions.indices(array);
 
-        assertTrue(progressionReturnsExpectedInts(range, expectedIntegers));
+        assertTrue(progressionReturnsExpectedInts(range, expected));
     }
 
     @Test
     public void shouldReturnCorrectRangeOfShortArray() {
         short[] array = new short[4];
-        int[] expectedIntegers = { 0, 1, 2, 3, };
+        int[] expected = { 0, 1, 2, 3, };
 
-        Iterable<Integer> range = Progressions.range(array);
+        Progression range = Progressions.indices(array);
 
-        assertTrue(progressionReturnsExpectedInts(range, expectedIntegers));
+        assertTrue(progressionReturnsExpectedInts(range, expected));
     }
 }

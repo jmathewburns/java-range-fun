@@ -96,7 +96,7 @@ public class Progressions {
      * @throws NullPointerException if the given object is null
      * @throws IllegalArgumentException if the given object is not an array
      */
-    public static Progression range(Object array) {
+    public static Progression indices(Object array) {
         Objects.requireNonNull(array);
         int length = Array.getLength(array);
 
