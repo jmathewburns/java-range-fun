@@ -20,45 +20,34 @@
  */
 package xyz.jmburns.rangefun;
 
+import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.Objects;
-import java.util.PrimitiveIterator;
 
-/**
- * This class provides part core functionality of the Range Fun(ctions)
- * library.
- */
-class ReverseRangeIterator implements PrimitiveIterator.OfInt {
+class ReverseProgressionIterator implements Iterator<Integer> {
     private final int step;
     private final int end;
     private int current;
 
-    ReverseRangeIterator(int start, int end, int step) {
+    ReverseProgressionIterator(int start, int end, int step) {
         this.current = start;
         this.end = end;
         this.step = Math.abs(step);
     }
 
-    /**
-     * Returns the next {@code int} element in the range.
-     *
-     * @return The next {@code int} element in the range.
-     * @throws NoSuchElementException if the end of the range has been reached
-     */
     @Override
-    public int nextInt() {
+    public Integer next() {
         if (hasNext()) {
             int oldCurrent = current;
             current = current - step;
             return oldCurrent;
         } else {
             throw new NoSuchElementException(
-                    "the end of the range has been reached"
+                    "the end of the progression has been reached"
             );
         }
     }
 
-    /** @return {@code false} if the end of the range has been reached. */
     @Override
     public boolean hasNext() {
         return current >= end;
@@ -73,7 +62,7 @@ class ReverseRangeIterator implements PrimitiveIterator.OfInt {
             return false;
         }
 
-        ReverseRangeIterator other = (ReverseRangeIterator) o;
+        ReverseProgressionIterator other = (ReverseProgressionIterator) o;
 
         return  step == other.step &&
                 end == other.end &&
@@ -90,7 +79,7 @@ class ReverseRangeIterator implements PrimitiveIterator.OfInt {
     @Override
     public String toString() {
         return String.format(
-                "ReverseRangeIterator{step=%s, end=%s, current=%s}",
+                "ReverseProgressionIterator{step=%s, end=%s, current=%s}",
                 step, end, current
         );
     }

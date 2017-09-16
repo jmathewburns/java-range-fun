@@ -1,10 +1,11 @@
-# Range Fun(ctions)
+# Java Range Fun(ctions)
 
-Just a bit of fun with ranges. A small (five-class) library to combine the power of the traditional for loop with the prettiness and simplicity of the for-each by providing a set of functions to generate ranges of integers, which can be used as indices.
+A lightweight Java implementation of Python's `range` function, but with better naming.
 
-## Installation
+## Usage
 
-You can find source, javadoc, and binary jars at Maven Central, under the groupId "xyz.jmburns", and the artifactId "rangfun". The latest version is 1.2.0. Using that, you can add the depedency to you project, just like any other.
+You can find source, javadoc, and binary jars at Maven Central, under the groupId "xyz.jmburns", and the artifactId 
+"rangefun". The latest version is 2.0.0. Using that, you can add the dependency to you project, just like any other.
 
 For example, with Gradle:
 ```
@@ -13,7 +14,7 @@ repositories {
 }
 
 dependencies {
-   compile 'xyz.jmburns:rangefun:1.2.0'
+   compile 'xyz.jmburns:rangefun:2.0.0'
 }
 ```
 
@@ -21,125 +22,149 @@ Also, feel free to copy the source code and include it in your own project, unde
 
 ## Description
 
-We all like enhanced-for (or for-each, if you prefer) loops, right? They're simple, high-level, and do (mostly) what you want. However, we've all been in situations in which they're just not powerful enough. Usually, when you want to maintain an index variable, or iterate backwards. 
+This library provides a lightweight, iterable Progression class, representing a series of integers.
+The class's main purpose is in for-each loops, but can also be used to build an array of integers, or check if an
+integer is within a certain range, among other things.
 
-When this happens, you are forced to revert to the traditional for loop with its decidedly low-level ```int``` manipulation and comparison. Not to mention the potential for those annoying off-by-one errors.
+All methods of the `Progression` class (and its `Iterator`) are lazily-evaluated, so all `Progression` instances --
+large and small -- are guaranteed to have the same (small) memory footprint, and a similar performance impact.
 
-This library aims to prevent that from happening through the use of simple functions to create an ```Iterable<Integer>``` suited your needs, which then supplies Integers as you need them.
-
-And, yes, I did say ```Iterable```. This entire library is implemented without a single array. This means that you can make the range as large\* as you want, without worrying about an increased impact on memory!
-
-\* _As long as you don't want a range with an endpoint outside the bounds of an ```int```, for now. See the Features section._
-
-Using the library, you can write simple code, maintain a good level of abstraction (clean coders love that sort of thing), and eliminate potential bugs. What could be better?
+Also, the class has well-behaved `hashCode`, `equals`, `compareTo` implementations, so instances can be safely stored 
+in `Collection` and `Map` instances.
 
 ## Examples
 
-The best demonstration of the library is in the tests. However, for the sake of "readme-completeness", I've compiled some small examples of what's possible.
+The best demonstration of the library is in the tests. However, for the sake of "readme-completeness", I've compiled 
+some small examples of what's possible.
 
+### Progression Creation
 *Note:*
-```Range.of()``` returns an Iterable<Integer> that is mostly intended to be used in an enhanced-for loop to supply the desired indices as you need them. Also, all calls to ```Range.of()``` can be substituted with a call to ```Range.range()```, a convenience method to preserve readability when ```Range``` is statically imported.
+All creation of `xyz.jmburns.rangefun.Progression` instances is done via static factory methods in the 
+`xyz.jmburns.rangefun.Progressions` "API" class. Those static methods are intended to be statically imported for enhanced 
+readability.
 
 <br>
 
-Basic range from x to y, inclusive:
+Basic range of x to y, inclusive:
 ```java
-Range.of(x).to(y)
+range(x, y)
 ```
-or:
-```java
-Range.of(x, y)
-```
-Generates: ```x, x + 1, x + 2, ..., y```
+Generates: `x, x + 1, x + 2, ..., y`
 
 <br>
 
-Basic range from x to y, exclusive:
+Progression of x to no further than y, with a custom step of z:
 ```java
-Range.of(x).until(y)
+progression(x, y, z)
 ```
-or:
-```java
-Range.of(x, y - 1)
-```
-Generates: ```x, x + 1, x + 2, ..., y - 1```
-
-Range from x to y with a custom step of z:
-```java
-Range.of(x).to(y).step(z)
-```
-or:
-```java
-Range.of(x, y, z)
-```
-Generates: ```x, x + z, x + 2*z, ...```
+Generates: `x, x + z, x + 2*z, ...`
 
 <br>
 
 Range of all the indices of an array:
 ```java
-Range.of(array)
+indices(array)
 ```
-or:
-```java
-Range.of(0).until(array.length)
-```
-Generates: ```0, 1, 2, ..., array.length - 1```
+Generates: `0, 1, 2, ..., array.length - 1`
 
 <br>
 
 Range of all the indices of an array, backwards:
 ```java
-Range.of(array).reverse()
+indices(array).reverse()
 ```
-Generates: ```array.length - 1, array.length - 2, ..., 0```
+Generates: `array.length - 1, array.length - 2, ..., 0`
 
 <br>
 
-Range of x to y with a custom step of z, backwards:
+Progression of x to y with a custom step of z, backwards:
 ```java
-Range.of(x).to(y).step(z).reverse()
+range(x, y, z).reverse()
 ```
-Generates: ```y, y - z, y - 2*z, ...```
+Or, simply:
+```java
+progression(y, x, z) //y can be higher than x, and z does not have to be negative
+```
+Generates: `y, y - z, y - 2*z, ...`
+
+<br>
+
+A simple count from 0 to y, exclusive:
+```java
+count(y)
+```
+Generates: `0, 1, 2, ..., y - 1`
+
+### Progression Usage
+
+Checking if a integer is within a range:
+```java
+range(1, 5).contains(3)
+```
+Will evaluate to `true`.
+
+<br>
+
+Generating an array of integers:
+```java
+progression(1, 25, 5).toArray()
+```
+Will evaluate to an array of `1, 6, 11, 16, 21`.
+
+<br>
+
+Finding the length of a progression:
+```java
+progression(1, 25, 5).length()
+```
+Will evaluate to `5`.
+
+<br>
+
+Finding the integer in a progression at a specific index, counting from zero:
+```java
+progression(1, 25, 5).get(2)
+```
+Will evaluate to `11`.
 
 <br>
 
 And finally, a practical example. Copying over an array.
 
-With the traditional for loop:
 ```java
-for (int i = 0; i < source.length; i++) {
+for (int i : indices(source)) {
    destination[i] = source[i];
 }
 ```
-Familiar, no?
-
-Now, with my Range Fun(ctions):
-```java
-for (int i : range(source)) {
-   destination[i] = source[i];
-}
-```
-Beautiful, just beautiful.
+Beautiful, no?
 
 ## Features
 
- - [x] "Fluent" API
- - [x] Ability to iterate backwards
+ - [x] Lazy evaluation
+ - [x] Well-behaved `hashCode`, `equals`, `compareTo` implementations, for storage in maps and collections
+ - [x] Ability to easily iterate backwards
  - [x] Convenience method to generate ranges for arrays
- - [ ] Ability to generate a range of ```long``` values (Coming soon)
- - [ ] Ability to generate a range of ```double``` values (Coming soon)
+ - [ ] Ability to generate a range of `long` values (Possibly coming soon)
+ - [ ] Ability to generate a range of `double` values (Possibly coming soon)
 
- ## Feedback
+## Feedback
 
-Suggestions, bug reports, and pull requests are all welcome and appreciated. You are also welcome to send me an email at dev (AT) rangefun.xyz if you feel the need to do so.
+Suggestions, bug reports, and pull requests are all welcome and appreciated. You are also welcome to send me an email 
+at dev (AT) rangefun.xyz if you feel the need to do so.
  
 ## Licensing
 
 Copyright 2017 Jacques Burns
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated 
+documentation files (the "Software"), to deal in the Software without restriction, including without limitation the 
+rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit 
+persons to whom the Software is furnished to do so, subject to the following conditions:
 
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the
+Software.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE 
+WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR 
+COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR 
+OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.

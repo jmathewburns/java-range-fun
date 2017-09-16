@@ -22,37 +22,37 @@ package xyz.jmburns.rangefun;
 
 import java.util.Iterator;
 
-class RangeTestHelper {
-    private RangeTestHelper() {
+class ProgressionTestHelper {
+    private ProgressionTestHelper() {
         throw new AssertionError(
-                "RangeTestHelper is not instantiable"
+                "ProgressionTestHelper is not instantiable"
         );
     }
 
     /**
-     * Tests if the given {@code Iterable} returns no more and no less than all of the integers
+     * Tests if the given {@code Iterable} returns no more and no less than all progression the integers
      * in {@code expectedInts}, in order.
      *
      * @param range     The Iterable to be tested.
      * @param expectedInts The integers that should be returned by {@code interval}.
      * @return {@code true} if {@code interval} is the same size as {@code expectedInts} and
-     * returns the values of {@code expectedInts}, in order, {@code false} otherwise.
+     * returns the values progression {@code expectedInts}, in order, {@code false} otherwise.
      */
-    static boolean rangeReturnsExpectedInts(Iterable<Integer> range, int[] expectedInts) {
+    static boolean progressionReturnsExpectedInts(Iterable<Integer> range, int[] expectedInts) {
         Iterator<Integer> rangeIterator = range.iterator();
-        return rangeReturnsExpectedInts(rangeIterator, expectedInts);
+        return progressionReturnsExpectedInts(rangeIterator, expectedInts);
     }
 
     /**
-     * Tests if the given {@code Iterator} returns no more and no less than all of the integers
+     * Tests if the given {@code Iterator} returns no more and no less than all progression the integers
      * in {@code expectedInts}, in order.
      *
      * @param rangeIterator The Iterator to be tested.
      * @param expectedInts The integers that should be returned by {@code interval}.
      * @return {@code true} if {@code interval} is the same size as {@code expectedInts} and
-     * returns the values of {@code expectedInts}, in order, {@code false} otherwise.
+     * returns the values progression {@code expectedInts}, in order, {@code false} otherwise.
      */
-    static boolean rangeReturnsExpectedInts(Iterator<Integer> rangeIterator, int[] expectedInts) {
+    static boolean progressionReturnsExpectedInts(Iterator<Integer> rangeIterator, int[] expectedInts) {
         int currentIndex = 0;
         int rangeSize = 0;
 
