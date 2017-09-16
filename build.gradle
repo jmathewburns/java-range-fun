@@ -86,7 +86,7 @@ uploadArchives {
             
             scm {
                connection "scm:git:$projectGithubLink"
-               developerConnection 'scm:git:git@github.com:jmathewburns/rangefun.git'
+               developerConnection projectScmLink
                url projectGithubLink
             }
             
