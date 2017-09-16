@@ -67,6 +67,18 @@ public final class Progression implements Iterable<Integer>, Comparable<Progress
      *
      * @return A new {@code Iterator} using the values passed
      *         to this range during creation.
+    public Integer[] toArray() {
+        int length = (high - low + 1) / step;
+        Integer[] array = new Integer[length];
+
+        int index = 0;
+        for (Integer integer : this) {
+            array[index] = integer;
+            index++;
+        }
+
+        return array;
+    }
      */
     @Override
     public Iterator<Integer> iterator() {

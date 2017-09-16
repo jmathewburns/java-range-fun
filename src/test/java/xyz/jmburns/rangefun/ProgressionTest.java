@@ -88,6 +88,16 @@ public class ProgressionTest {
     }
 
     @Test
+    public void shouldCreateCorrectArrayRepresentation() {
+        Integer[] expected = { 1, 6, 11, 16, 21, };
+        Progression progression = new Progression(1, 25, 5);
+
+        Integer[] actual = progression.toArray();
+
+        assertArrayEquals(expected, actual);
+    }
+
+    @Test
     public void equivalentInstancesShouldBeEqual() {
         Progression progression1 = new Progression(0, 10, 5);
         Progression progression2 = new Progression(0, 10, 5);
