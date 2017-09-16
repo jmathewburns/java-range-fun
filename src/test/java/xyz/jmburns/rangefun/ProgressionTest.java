@@ -22,6 +22,8 @@ package xyz.jmburns.rangefun;
 
 import org.junit.Test;
 
+import java.util.Arrays;
+
 import static org.junit.Assert.*;
 import static xyz.jmburns.rangefun.ProgressionTestHelper.progressionReturnsExpectedInts;
 
@@ -71,7 +73,7 @@ public class ProgressionTest {
     }
 
     @Test
-    public void shouldGetCorrectIntegerAtReverseIndex() {
+    public void shouldGetCorrectIntegerAtReversedIndex() {
         Progression progression = new Progression(5, 1, 3);
 
         assertEquals(2, progression.get(1));
@@ -85,6 +87,16 @@ public class ProgressionTest {
         Progression reversed = initial.reverse();
 
         assertTrue(progressionReturnsExpectedInts(reversed, expected));
+    }
+
+    @Test
+    public void shouldCalculateCorrectLength() {
+        Progression progression = new Progression(0, 30, 5);
+        int expected = 7;
+
+        int actual = progression.length();
+
+        assertEquals(expected, actual);
     }
 
     @Test
