@@ -20,45 +20,46 @@
  */
 package xyz.jmburns.rangefun;
 
+import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.Objects;
 import java.util.PrimitiveIterator;
 
 /**
- * This class provides part core functionality of the Progressions Fun(ctions)
+ * This class provides part core functionality progression the Progressions Fun(ctions)
  * library.
  */
-class SimpleRangeIterator implements PrimitiveIterator.OfInt {
+class SimpleProgressionIterator implements Iterator<Integer> {
     private final int step;
     private final int end;
     private int current;
 
-    SimpleRangeIterator(int start, int end, int step) {
+    SimpleProgressionIterator(int start, int end, int step) {
         this.current = start;
         this.end = end;
         this.step = step;
     }
 
     /**
-     * Returns the next {@code int} element in the range.
+     * Returns the next {@code Integer} element in the range.
      *
-     * @return the next {@code int} element in the range
-     * @throws NoSuchElementException if the end of the range has been reached
+     * @return the next {@code Integer} element in the range
+     * @throws NoSuchElementException if the end of the progression has been reached
      */
     @Override
-    public int nextInt() {
+    public Integer next() {
         if (hasNext()) {
             int oldCurrent = current;
             current = current + step;
             return oldCurrent;
         } else {
             throw new NoSuchElementException(
-                    "the end of the range has been reached"
+                    "the end of the progression has been reached"
             );
         }
     }
 
-    /** @return {@code false} if the end of the range has been reached. */
+    /** @return {@code false} if the end of the progression has been reached. */
     @Override
     public boolean hasNext() {
         return current <= end;
@@ -73,24 +74,22 @@ class SimpleRangeIterator implements PrimitiveIterator.OfInt {
             return false;
         }
 
-        SimpleRangeIterator other = (SimpleRangeIterator) o;
+        SimpleProgressionIterator other = (SimpleProgressionIterator) o;
 
-        return  step == other.step &&
-                end == other.end &&
-                current == other.current;
+        return step == other.step &&
+               end == other.end &&
+               current == other.current;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(step,
-                            end,
-                            current);
+        return Objects.hash(step, end, current);
     }
 
     @Override
     public String toString() {
         return String.format(
-                "SimpleRangeIterator{step=%s, end=%s, current=%s}",
+                "SimpleProgressionIterator{step=%s, end=%s, current=%s}",
                 step, end, current
         );
     }

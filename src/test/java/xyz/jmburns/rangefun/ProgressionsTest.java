@@ -20,25 +20,26 @@
  */
 package xyz.jmburns.rangefun;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.Iterator;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
-import static xyz.jmburns.rangefun.RangeTestHelper.rangeReturnsExpectedInts;
+import static xyz.jmburns.rangefun.ProgressionTestHelper.progressionReturnsExpectedInts;
 
-public class APITest {
+public class ProgressionsTest {
     @Test
     public void shouldReturnNonNullBasicRange() {
-        Iterable<Integer> range = Progressions.of(1, 3);
+        Iterable<Integer> range = Progressions.range(1, 3);
 
         assertNotNull(range);
     }
 
     @Test
     public void shouldReturnNonNullBasicIterator() {
-        Iterable<Integer> range = Progressions.of(1, 3);
+        Iterable<Integer> range = Progressions.range(1, 3);
 
         Iterator<Integer> rangeIterator = range.iterator();
 
@@ -47,14 +48,14 @@ public class APITest {
 
     @Test
     public void shouldReturnNonNullSteppedRange() {
-        Iterable<Integer> range = Progressions.of(0, 4, 2);
+        Iterable<Integer> range = Progressions.progression(0, 4, 2);
 
         assertNotNull(range);
     }
 
     @Test
     public void shouldReturnNonNullSteppedIterator() {
-        Iterable<Integer> range = Progressions.of(0, 4, 2);
+        Iterable<Integer> range = Progressions.progression(0, 4, 2);
 
         Iterator<Integer> rangeIterator = range.iterator();
 
@@ -62,29 +63,19 @@ public class APITest {
     }
 
     @Test
-    public void shouldReturnCorrectBasicRangeOfInts() {
-        Iterable<Integer> range = Progressions.of(1, 3);
+    public void shouldReturnCorrectRange() {
+        Iterable<Integer> range = Progressions.range(1, 3);
         int[] expectedIntegers = {1, 2, 3};
 
-        assertTrue(rangeReturnsExpectedInts(range, expectedIntegers));
+        assertTrue(progressionReturnsExpectedInts(range, expectedIntegers));
     }
 
     @Test
-    public void shouldReturnCorrectSteppedRangeOfInts() {
-        Iterable<Integer> range = Progressions.of(0, 4, 2);
+    public void shouldReturnCorrectProgression() {
+        Iterable<Integer> range = Progressions.progression(0, 4, 2);
         int[] expectedIntegers = {0, 2, 4};
 
-        assertTrue(rangeReturnsExpectedInts(range, expectedIntegers));
-    }
-
-    @Test
-    public void shouldReturnCorrectRangeOfIntsWithFluidAPI() {
-        Iterable<Integer> range = Progressions.of(0)
-                                        .to(5)
-                                        .step(2);
-        int[] expectedIntegers = {0, 2, 4};
-
-        assertTrue(rangeReturnsExpectedInts(range, expectedIntegers));
+        assertTrue(progressionReturnsExpectedInts(range, expectedIntegers));
     }
 
     @Test
@@ -92,9 +83,9 @@ public class APITest {
         Object[] array = new Object[6];
         int[] expectedIntegers = { 0, 1, 2, 3, 4, 5, };
 
-        Iterable<Integer> range = Progressions.of(array);
+        Iterable<Integer> range = Progressions.range(array);
 
-        assertTrue(rangeReturnsExpectedInts(range, expectedIntegers));
+        assertTrue(progressionReturnsExpectedInts(range, expectedIntegers));
     }
 
     @Test
@@ -102,9 +93,9 @@ public class APITest {
         int[] array = new int[6];
         int[] expectedIntegers = { 0, 1, 2, 3, 4, 5, };
 
-        Iterable<Integer> range = Progressions.of(array);
+        Iterable<Integer> range = Progressions.range(array);
 
-        assertTrue(rangeReturnsExpectedInts(range, expectedIntegers));
+        assertTrue(progressionReturnsExpectedInts(range, expectedIntegers));
     }
 
     @Test
@@ -112,9 +103,9 @@ public class APITest {
         long[] array = new long[6];
         int[] expectedIntegers = { 0, 1, 2, 3, 4, 5, };
 
-        Iterable<Integer> range = Progressions.of(array);
+        Iterable<Integer> range = Progressions.range(array);
 
-        assertTrue(rangeReturnsExpectedInts(range, expectedIntegers));
+        assertTrue(progressionReturnsExpectedInts(range, expectedIntegers));
     }
 
     @Test
@@ -122,9 +113,9 @@ public class APITest {
         float[] array = new float[6];
         int[] expectedIntegers = { 0, 1, 2, 3, 4, 5, };
 
-        Iterable<Integer> range = Progressions.of(array);
+        Iterable<Integer> range = Progressions.range(array);
 
-        assertTrue(rangeReturnsExpectedInts(range, expectedIntegers));
+        assertTrue(progressionReturnsExpectedInts(range, expectedIntegers));
     }
 
     @Test
@@ -132,9 +123,9 @@ public class APITest {
         double[] array = new double[3];
         int[] expectedIntegers = { 0, 1, 2, };
 
-        Iterable<Integer> range = Progressions.of(array);
+        Iterable<Integer> range = Progressions.range(array);
 
-        assertTrue(rangeReturnsExpectedInts(range, expectedIntegers));
+        assertTrue(progressionReturnsExpectedInts(range, expectedIntegers));
     }
 
     @Test
@@ -142,9 +133,9 @@ public class APITest {
         byte[] array = new byte[1];
         int[] expectedIntegers = { 0, };
 
-        Iterable<Integer> range = Progressions.of(array);
+        Iterable<Integer> range = Progressions.range(array);
 
-        assertTrue(rangeReturnsExpectedInts(range, expectedIntegers));
+        assertTrue(progressionReturnsExpectedInts(range, expectedIntegers));
     }
 
     @Test
@@ -152,9 +143,9 @@ public class APITest {
         char[] array = new char[5];
         int[] expectedIntegers = { 0, 1, 2, 3, 4, };
 
-        Iterable<Integer> range = Progressions.of(array);
+        Iterable<Integer> range = Progressions.range(array);
 
-        assertTrue(rangeReturnsExpectedInts(range, expectedIntegers));
+        assertTrue(progressionReturnsExpectedInts(range, expectedIntegers));
     }
 
     @Test
@@ -162,8 +153,8 @@ public class APITest {
         short[] array = new short[4];
         int[] expectedIntegers = { 0, 1, 2, 3, };
 
-        Iterable<Integer> range = Progressions.of(array);
+        Iterable<Integer> range = Progressions.range(array);
 
-        assertTrue(rangeReturnsExpectedInts(range, expectedIntegers));
+        assertTrue(progressionReturnsExpectedInts(range, expectedIntegers));
     }
 }

@@ -21,37 +21,35 @@
 package xyz.jmburns.rangefun;
 
 import org.junit.Test;
-
 import java.util.Iterator;
 
 import static org.junit.Assert.*;
-import static org.junit.Assert.assertEquals;
-import static xyz.jmburns.rangefun.RangeTestHelper.rangeReturnsExpectedInts;
+import static xyz.jmburns.rangefun.ProgressionTestHelper.progressionReturnsExpectedInts;
 
-public class SimpleRangeIteratorTest {
+public class ReverseProgressionIteratorTest {
     @Test
-    public void shouldReturnBasicRangeOfExpectedInts() {
-        int[] expectedIntegers = { 1, 2, 3, };
-        Iterator<Integer> rangeIterator = new SimpleRangeIterator(1, 3, 1);
+    public void shouldReturnReversedRangeOfExpectedInts() {
+        int[] expectedIntegers = { 3, 2, 1, };
+        Iterator<Integer> rangeIterator = new ReverseProgressionIterator(3, 1, 1);
 
-        assertTrue(rangeReturnsExpectedInts(rangeIterator, expectedIntegers));
+        assertTrue(ProgressionTestHelper.progressionReturnsExpectedInts(rangeIterator, expectedIntegers));
     }
 
     @Test
-    public void shouldReturnSteppedRangeOfExpectedInts() {
-        int[] expectedIntegers = { 1, 3, 5, };
-        Iterator<Integer> rangeIterator = new SimpleRangeIterator(1, 6, 2);
+    public void shouldReturnReversedSteppedRangeOfExpectedInts() {
+        int[] expectedIntegers = { 6, 4, 2, };
+        Iterator<Integer> rangeIterator = new ReverseProgressionIterator(6, 1, 2);
 
-        assertTrue(rangeReturnsExpectedInts(rangeIterator, expectedIntegers));
+        assertTrue(ProgressionTestHelper.progressionReturnsExpectedInts(rangeIterator, expectedIntegers));
     }
 
     @Test
     public void shouldNotHaveNextForMalformedRange() {
-        int start = 6;
-        int end = 0;
+        int start = 0;
+        int end = 6;
         int step = 3;
 
-        Iterator<Integer> iterator = new SimpleRangeIterator(start, end, step);
+        Iterator<Integer> iterator = new ReverseProgressionIterator(start, end, step);
 
         assertFalse(iterator.hasNext());
     }
@@ -62,8 +60,8 @@ public class SimpleRangeIteratorTest {
         int end = 0;
         int step = 3;
 
-        Iterator<Integer> iterator1 = new SimpleRangeIterator(start, end, step);
-        Iterator<Integer> iterator2 = new SimpleRangeIterator(start, end, step);
+        Iterator<Integer> iterator1 = new ReverseProgressionIterator(start, end, step);
+        Iterator<Integer> iterator2 = new ReverseProgressionIterator(start, end, step);
 
         assertEquals(iterator1, iterator2);
     }
@@ -74,8 +72,8 @@ public class SimpleRangeIteratorTest {
         int end = 0;
         int step = 3;
 
-        Iterator<Integer> iterator1 = new SimpleRangeIterator(start, end, step + 1);
-        Iterator<Integer> iterator2 = new SimpleRangeIterator(start, end, step);
+        Iterator<Integer> iterator1 = new ReverseProgressionIterator(start, end, step + 1);
+        Iterator<Integer> iterator2 = new ReverseProgressionIterator(start, end, step);
 
         assertNotEquals(iterator1, iterator2);
     }
@@ -86,8 +84,8 @@ public class SimpleRangeIteratorTest {
         int end = 0;
         int step = 3;
 
-        Iterator<Integer> iterator1 = new SimpleRangeIterator(start, end, step);
-        Iterator<Integer> iterator2 = new SimpleRangeIterator(start, end, step);
+        Iterator<Integer> iterator1 = new ReverseProgressionIterator(start, end, step);
+        Iterator<Integer> iterator2 = new ReverseProgressionIterator(start, end, step);
 
         assertEquals(iterator1.hashCode(), iterator2.hashCode());
     }
@@ -98,25 +96,9 @@ public class SimpleRangeIteratorTest {
         int end = 0;
         int step = 3;
 
-        Iterator<Integer> iterator1 = new SimpleRangeIterator(start, end, step + 1);
-        Iterator<Integer> iterator2 = new SimpleRangeIterator(start, end, step);
+        Iterator<Integer> iterator1 = new ReverseProgressionIterator(start, end, step + 1);
+        Iterator<Integer> iterator2 = new ReverseProgressionIterator(start, end, step);
 
         assertNotEquals(iterator1.hashCode(), iterator2.hashCode());
-    }
-
-    @Test
-    public void shouldReflectGivenValuesInToString() {
-        int start = 0;
-        int end = 8;
-        int step = 4;
-        Iterator<Integer> iterator = new SimpleRangeIterator(start, end, step);
-        String expectedToString = String.format(
-                "SimpleRangeIterator{step=%s, end=%s, current=%s}",
-                step, end, start
-        );
-
-        String actualToString = iterator.toString();
-
-        assertEquals(expectedToString, actualToString);
     }
 }

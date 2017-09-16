@@ -21,9 +21,10 @@
 package xyz.jmburns.rangefun;
 
 import java.lang.reflect.Array;
+import java.util.Objects;
 
 public class Progressions {
-    private static final int DEFAULT_STEP = 1;
+    private static final int RANGE_STEP = 1;
 
     private Progressions() {
         throw new AssertionError(
@@ -31,49 +32,23 @@ public class Progressions {
         );
     }
 
-    public static Iterable<Integer> of(int start, int end, int step) {
-        return new RangeInternal(start, end, step);
+    public static Progression progression(int start, int end, int step) {
+        return new Progression(start, end, step);
     }
 
-    public static Iterable<Integer> of(int start, int end) {
-        return of(start, end, DEFAULT_STEP);
+    public static Progression range(int start, int end) {
+        return progression(start, end, RANGE_STEP);
     }
 
-    public static RangeBuilder of(int start) {
-        return new RangeBuilder()
-                .from(start)
-                .step(DEFAULT_STEP);
+    public static Progression count(int to) {
+        /* Exclusive end is traditional. */
+        return range(0, to - 1);
     }
 
-    public static RangeBuilder of(Object array) {
+    public static Progression range(Object array) {
+        Objects.requireNonNull(array);
         int length = Array.getLength(array);
-       
-        return new RangeBuilder()
-                .from(0)
-                .to(length - 1)
-                .step(DEFAULT_STEP);
-    }
 
-    public static RangeBuilder to(int end) {
-       return new RangeBuilder()
-               .from(1)
-               .to(end)
-               .step(DEFAULT_STEP);
-    }
-
-    public static Iterable<Integer> range(int start, int end, int step) {
-        return of(start, end, step);
-    }
-
-    public static Iterable<Integer> range(int start, int end) {
-        return of(start, end);
-    }
-
-    public static Iterable<Integer> range(int start) {
-        return of(start);
-    }
-
-    public static RangeBuilder range(Object array) {
-        return of(array);
+        return count(length);
     }
 }
