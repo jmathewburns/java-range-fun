@@ -100,7 +100,7 @@ public final class Progression implements Iterable<Integer>, Comparable<Progress
     }
 
     /**
-     * Returns a new {@Integer array} filled by all the integers in this progression, in iteration order.
+     * Returns a new {@code Integer} array filled with all the integers in this progression, in iteration order.
      *
      * For example, {@code Progressions.range(1, 5).toArray()} will evaluate to an array containing the
      * integers 1, 2, 3, 4, 5.
@@ -109,7 +109,7 @@ public final class Progression implements Iterable<Integer>, Comparable<Progress
      * @see xyz.jmburns.rangefun.Progressions#range(int, int)
      */
     public Integer[] toArray() {
-        int length = (high - low + 1) / step;
+        int length = length();
         Integer[] array = new Integer[length];
 
         int index = 0;
@@ -122,7 +122,16 @@ public final class Progression implements Iterable<Integer>, Comparable<Progress
     }
 
     /**
-     * @return a new Iterator over this progression.
+     * Calculates the length of this progression, with the step value taken into account.
+     *
+     * @return the length of the progression
+     */
+    public int length() {
+        return (high - low + 1) / step;
+    }
+
+    /**
+     * @return a new Iterator over this progression
      */
     @Override
     public Iterator<Integer> iterator() {
