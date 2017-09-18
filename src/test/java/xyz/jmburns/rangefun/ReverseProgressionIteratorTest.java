@@ -24,81 +24,74 @@ import org.junit.Test;
 import java.util.Iterator;
 
 import static org.junit.Assert.*;
-import static xyz.jmburns.rangefun.ProgressionTestHelper.progressionReturnsExpectedInts;
+import static xyz.jmburns.rangefun.ProgressionTestHelper.iteratorReturnsOnlyExpectedIntegers;
 
 public class ReverseProgressionIteratorTest {
     @Test
-    public void shouldReturnReversedRangeOfExpectedInts() {
+    public void shouldReturnCorrectReversedRangeIterator() {
         int[] expectedIntegers = { 3, 2, 1, };
-        Iterator<Integer> rangeIterator = new ReverseProgressionIterator(3, 1, 1);
+        Iterator<Integer> iterator = new ReverseProgressionIterator(3, 1, 1);
 
-        assertTrue(ProgressionTestHelper.progressionReturnsExpectedInts(rangeIterator, expectedIntegers));
+        assertTrue(iteratorReturnsOnlyExpectedIntegers(iterator, expectedIntegers));
     }
 
     @Test
-    public void shouldReturnReversedSteppedRangeOfExpectedInts() {
+    public void shouldReturnCorrectReversedProgressionIterator() {
         int[] expectedIntegers = { 6, 4, 2, };
-        Iterator<Integer> rangeIterator = new ReverseProgressionIterator(6, 1, 2);
+        Iterator<Integer> iterator = new ReverseProgressionIterator(6, 1, 2);
 
-        assertTrue(ProgressionTestHelper.progressionReturnsExpectedInts(rangeIterator, expectedIntegers));
+        assertTrue(iteratorReturnsOnlyExpectedIntegers(iterator, expectedIntegers));
     }
 
     @Test
-    public void shouldNotHaveNextForMalformedRange() {
-        int start = 0;
-        int end = 6;
-        int step = 3;
+    public void malformedProgressionShouldBeEmpty() {
+        int high = 0, low = 6, step = 3;
+        Iterator<Integer> iterator = new ReverseProgressionIterator(high, low, step);
 
-        Iterator<Integer> iterator = new ReverseProgressionIterator(start, end, step);
+        boolean empty = !iterator.hasNext();
 
-        assertFalse(iterator.hasNext());
+        assertTrue(empty);
     }
 
     @Test
-    public void equivalentIteratorsShouldBeEqual() {
-        int start = 6;
-        int end = 0;
-        int step = 3;
-
-        Iterator<Integer> iterator1 = new ReverseProgressionIterator(start, end, step);
-        Iterator<Integer> iterator2 = new ReverseProgressionIterator(start, end, step);
+    public void equivalentInstancesShouldBeEqual() {
+        int high = 6, low = 0, step = 3;
+        Iterator<Integer> iterator1 = new ReverseProgressionIterator(high, low, step);
+        Iterator<Integer> iterator2 = new ReverseProgressionIterator(high, low, step);
 
         assertEquals(iterator1, iterator2);
     }
 
     @Test
-    public void nonEquivalentIteratorsShouldBeUnequal() {
-        int start = 6;
-        int end = 0;
-        int step = 3;
-
-        Iterator<Integer> iterator1 = new ReverseProgressionIterator(start, end, step + 1);
-        Iterator<Integer> iterator2 = new ReverseProgressionIterator(start, end, step);
+    public void nonEquivalentInstancesShouldBeUnequal() {
+        int high = 30, low = 15, step = 10;
+        Iterator<Integer> iterator1 = new ReverseProgressionIterator(high, low, step + 4);
+        Iterator<Integer> iterator2 = new ReverseProgressionIterator(high, low, step);
 
         assertNotEquals(iterator1, iterator2);
     }
 
     @Test
     public void equivalentIteratorsShouldReturnEqualHashCodes() {
-        int start = 6;
-        int end = 0;
-        int step = 3;
+        int high = 9, low = 5, step = 1;
+        Iterator<Integer> iterator1 = new ReverseProgressionIterator(high, low, step);
+        Iterator<Integer> iterator2 = new ReverseProgressionIterator(high, low, step);
 
-        Iterator<Integer> iterator1 = new ReverseProgressionIterator(start, end, step);
-        Iterator<Integer> iterator2 = new ReverseProgressionIterator(start, end, step);
+        int hash1 = iterator1.hashCode();
+        int hash2 = iterator2.hashCode();
 
-        assertEquals(iterator1.hashCode(), iterator2.hashCode());
+        assertEquals(hash1, hash2);
     }
 
     @Test
     public void nonEquivalentIteratorsShouldReturnUnequalHashCodes() {
-        int start = 6;
-        int end = 0;
-        int step = 3;
+        int high = 3, low = 0, step = 2;
+        Iterator<Integer> iterator1 = new ReverseProgressionIterator(high, low - 2, step);
+        Iterator<Integer> iterator2 = new ReverseProgressionIterator(high, low, step);
 
-        Iterator<Integer> iterator1 = new ReverseProgressionIterator(start, end, step + 1);
-        Iterator<Integer> iterator2 = new ReverseProgressionIterator(start, end, step);
+        int hash1 = iterator1.hashCode();
+        int hash2 = iterator2.hashCode();
 
-        assertNotEquals(iterator1.hashCode(), iterator2.hashCode());
+        assertNotEquals(hash1, hash2);
     }
 }

@@ -26,80 +26,76 @@ import java.util.Iterator;
 
 import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
+import static xyz.jmburns.rangefun.ProgressionTestHelper.iteratorReturnsOnlyExpectedIntegers;
 
 public class SimpleProgressionIteratorTest {
     @Test
-    public void shouldReturnBasicRangeOfExpectedInts() {
+    public void shouldReturnCorrectRangeIterator() {
         int[] expectedIntegers = { 1, 2, 3, };
         Iterator<Integer> rangeIterator = new SimpleProgressionIterator(1, 3, 1);
 
-        assertTrue(ProgressionTestHelper.progressionReturnsExpectedInts(rangeIterator, expectedIntegers));
+        assertTrue(iteratorReturnsOnlyExpectedIntegers(rangeIterator, expectedIntegers));
     }
 
     @Test
-    public void shouldReturnSteppedRangeOfExpectedInts() {
+    public void shouldReturnCorrectProgressionIterator() {
         int[] expectedIntegers = { 1, 3, 5, };
         Iterator<Integer> rangeIterator = new SimpleProgressionIterator(1, 6, 2);
 
-        assertTrue(ProgressionTestHelper.progressionReturnsExpectedInts(rangeIterator, expectedIntegers));
+        assertTrue(iteratorReturnsOnlyExpectedIntegers(rangeIterator, expectedIntegers));
     }
 
     @Test
-    public void shouldNotHaveNextForMalformedRange() {
-        int start = 6;
-        int end = 0;
-        int step = 3;
+    public void malformedProgressionShouldBeEmpty() {
+        int low = 6, high = 0, step = 3;
+        Iterator<Integer> iterator = new SimpleProgressionIterator(low, high, step);
 
-        Iterator<Integer> iterator = new SimpleProgressionIterator(start, end, step);
+        boolean empty = !iterator.hasNext();
 
-        assertFalse(iterator.hasNext());
+        assertTrue(empty);
     }
 
     @Test
-    public void equivalentIteratorsShouldBeEqual() {
-        int start = 6;
-        int end = 0;
-        int step = 3;
+    public void equivalentInstancesShouldBeEqual() {
+        int low = 1, high = 8, step = 2;
 
-        Iterator<Integer> iterator1 = new SimpleProgressionIterator(start, end, step);
-        Iterator<Integer> iterator2 = new SimpleProgressionIterator(start, end, step);
+        Iterator<Integer> iterator1 = new SimpleProgressionIterator(low, high, step);
+        Iterator<Integer> iterator2 = new SimpleProgressionIterator(low, high, step);
 
         assertEquals(iterator1, iterator2);
     }
 
     @Test
-    public void nonEquivalentIteratorsShouldBeUnequal() {
-        int start = 6;
-        int end = 0;
-        int step = 3;
+    public void nonEquivalentInstancesShouldBeUnequal() {
+        int low = 0, high = 24, step = 8;
 
-        Iterator<Integer> iterator1 = new SimpleProgressionIterator(start, end, step + 1);
-        Iterator<Integer> iterator2 = new SimpleProgressionIterator(start, end, step);
+        Iterator<Integer> iterator1 = new SimpleProgressionIterator(low + 1, high, step);
+        Iterator<Integer> iterator2 = new SimpleProgressionIterator(low, high, step);
 
         assertNotEquals(iterator1, iterator2);
     }
 
     @Test
-    public void equivalentIteratorsShouldReturnEqualHashCodes() {
-        int start = 6;
-        int end = 0;
-        int step = 3;
+    public void equivalentInstancesShouldReturnEqualHashCodes() {
+        int low = 5, high = 50, step = 3;
+        Iterator<Integer> iterator1 = new SimpleProgressionIterator(low, high, step);
+        Iterator<Integer> iterator2 = new SimpleProgressionIterator(low, high, step);
 
-        Iterator<Integer> iterator1 = new SimpleProgressionIterator(start, end, step);
-        Iterator<Integer> iterator2 = new SimpleProgressionIterator(start, end, step);
+        int hash1 = iterator1.hashCode();
+        int hash2 = iterator2.hashCode();
 
-        assertEquals(iterator1.hashCode(), iterator2.hashCode());
+        assertEquals(hash1, hash2);
     }
 
     @Test
-    public void nonEquivalentIteratorsShouldReturnUnequalHashCodes() {
-        int start = 6;
-        int end = 0;
-        int step = 3;
+    public void nonEquivalentInstancesShouldReturnUnequalHashCodes() {
+        int low = 20, high = 61, step = 30;
+        Iterator<Integer> iterator1 = new SimpleProgressionIterator(low, high - 10, step);
+        Iterator<Integer> iterator2 = new SimpleProgressionIterator(low, high, step);
 
-        Iterator<Integer> iterator1 = new SimpleProgressionIterator(start, end, step + 1);
-        Iterator<Integer> iterator2 = new SimpleProgressionIterator(start, end, step);
+        int hash1 = iterator1.hashCode();
+        int hash2 = iterator2.hashCode();
 
-        assertNotEquals(iterator1.hashCode(), iterator2.hashCode());
+        assertNotEquals(hash1, hash2);
     }
 }

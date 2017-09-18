@@ -22,11 +22,9 @@ package xyz.jmburns.rangefun;
 
 import org.junit.Test;
 
-import java.util.Iterator;
-
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
-import static xyz.jmburns.rangefun.ProgressionTestHelper.progressionReturnsExpectedInts;
+import static xyz.jmburns.rangefun.ProgressionTestHelper.progressionReturnsOnlyExpectedIntegers;
 
 public class ProgressionsTest {
     @Test
@@ -48,7 +46,7 @@ public class ProgressionsTest {
         Progression range = Progressions.range(1, 3);
         int[] expected = {1, 2, 3};
 
-        assertTrue(progressionReturnsExpectedInts(range, expected));
+        assertTrue(progressionReturnsOnlyExpectedIntegers(range, expected));
     }
 
     @Test
@@ -56,7 +54,7 @@ public class ProgressionsTest {
         Progression progression = Progressions.progression(0, 4, 2);
         int[] expected = {0, 2, 4};
 
-        assertTrue(progressionReturnsExpectedInts(progression, expected));
+        assertTrue(progressionReturnsOnlyExpectedIntegers(progression, expected));
     }
 
     @Test
@@ -64,7 +62,7 @@ public class ProgressionsTest {
         Progression count = Progressions.count(4);
         int[] expected = {0, 1, 2, 3};
 
-        assertTrue(progressionReturnsExpectedInts(count, expected));
+        assertTrue(progressionReturnsOnlyExpectedIntegers(count, expected));
     }
 
     @Test
@@ -74,7 +72,7 @@ public class ProgressionsTest {
 
         Progression range = Progressions.indices(array);
 
-        assertTrue(progressionReturnsExpectedInts(range, expected));
+        assertTrue(progressionReturnsOnlyExpectedIntegers(range, expected));
     }
 
     @Test
@@ -84,7 +82,7 @@ public class ProgressionsTest {
 
         Progression range = Progressions.indices(array);
 
-        assertTrue(progressionReturnsExpectedInts(range, expected));
+        assertTrue(progressionReturnsOnlyExpectedIntegers(range, expected));
     }
 
     @Test
@@ -94,7 +92,7 @@ public class ProgressionsTest {
 
         Progression range = Progressions.indices(array);
 
-        assertTrue(progressionReturnsExpectedInts(range, expected));
+        assertTrue(progressionReturnsOnlyExpectedIntegers(range, expected));
     }
 
     @Test
@@ -104,7 +102,7 @@ public class ProgressionsTest {
 
         Progression range = Progressions.indices(array);
 
-        assertTrue(progressionReturnsExpectedInts(range, expected));
+        assertTrue(progressionReturnsOnlyExpectedIntegers(range, expected));
     }
 
     @Test
@@ -114,7 +112,7 @@ public class ProgressionsTest {
 
         Progression range = Progressions.indices(array);
 
-        assertTrue(progressionReturnsExpectedInts(range, expected));
+        assertTrue(progressionReturnsOnlyExpectedIntegers(range, expected));
     }
 
     @Test
@@ -124,7 +122,7 @@ public class ProgressionsTest {
 
         Progression range = Progressions.indices(array);
 
-        assertTrue(progressionReturnsExpectedInts(range, expected));
+        assertTrue(progressionReturnsOnlyExpectedIntegers(range, expected));
     }
 
     @Test
@@ -134,7 +132,7 @@ public class ProgressionsTest {
 
         Progression range = Progressions.indices(array);
 
-        assertTrue(progressionReturnsExpectedInts(range, expected));
+        assertTrue(progressionReturnsOnlyExpectedIntegers(range, expected));
     }
 
     @Test
@@ -144,6 +142,6 @@ public class ProgressionsTest {
 
         Progression range = Progressions.indices(array);
 
-        assertTrue(progressionReturnsExpectedInts(range, expected));
+        assertTrue(progressionReturnsOnlyExpectedIntegers(range, expected));
     }
 }

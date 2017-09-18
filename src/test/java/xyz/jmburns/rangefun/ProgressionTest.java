@@ -22,10 +22,8 @@ package xyz.jmburns.rangefun;
 
 import org.junit.Test;
 
-import java.util.Arrays;
-
 import static org.junit.Assert.*;
-import static xyz.jmburns.rangefun.ProgressionTestHelper.progressionReturnsExpectedInts;
+import static xyz.jmburns.rangefun.ProgressionTestHelper.progressionReturnsOnlyExpectedIntegers;
 
 public class ProgressionTest {
     @Test
@@ -38,7 +36,7 @@ public class ProgressionTest {
         Progression progression = new Progression(0, 4, 2);
         int[] expectedIntegers = {0, 2, 4};
 
-        assertTrue(progressionReturnsExpectedInts(progression, expectedIntegers));
+        assertTrue(progressionReturnsOnlyExpectedIntegers(progression, expectedIntegers));
     }
 
     @Test
@@ -66,17 +64,50 @@ public class ProgressionTest {
     }
 
     @Test
+    public void progressionShouldContainNegativeInteger() {
+        Progression progression = new Progression(-10, 3, 2);
+        assertTrue(progression.contains(-8));
+    }
+
+    @Test
+    public void reverseProgressionShouldContainNegativeInteger() {
+        Progression progression = new Progression(5, -5, 1);
+        assertTrue(progression.contains(-3));
+    }
+
+    @Test
     public void shouldGetCorrectIntegerAtSimpleIndex() {
         Progression progression = new Progression(10, 20, 2);
 
-        assertEquals(14, progression.get(2));
+        int integerAtIndex = progression.get(2);
+
+        assertEquals(14, integerAtIndex);
     }
 
     @Test
     public void shouldGetCorrectIntegerAtReversedIndex() {
         Progression progression = new Progression(5, 1, 3);
 
-        assertEquals(2, progression.get(1));
+        int integerAtIndex = progression.get(1);
+
+        assertEquals(2, integerAtIndex);
+    }
+
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void shouldThrowExceptionForNegativeIndex() {
+        Progression progression = new Progression(10, 20, 2);
+
+        progression.get(-1);
+        fail();
+    }
+
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void shouldThrowExceptionForTooHighIndex() {
+        Progression progression = new Progression(10, 20, 2);
+
+        int length = progression.length();
+        progression.get(length + 2);
+        fail();
     }
 
     @Test
@@ -86,7 +117,7 @@ public class ProgressionTest {
 
         Progression reversed = initial.reverse();
 
-        assertTrue(progressionReturnsExpectedInts(reversed, expected));
+        assertTrue(progressionReturnsOnlyExpectedIntegers(reversed, expected));
     }
 
     @Test
@@ -94,9 +125,19 @@ public class ProgressionTest {
         Progression progression = new Progression(0, 30, 5);
         int expected = 7;
 
-        int actual = progression.length();
+        int length = progression.length();
 
-        assertEquals(expected, actual);
+        assertEquals(expected, length);
+    }
+
+    @Test
+    public void shouldCalculateCorrectLengthForNegativeStart() {
+        Progression progression = new Progression(-5, 30, 5);
+        int expected = 8;
+
+        int length = progression.length();
+
+        assertEquals(expected, length);
     }
 
     @Test
