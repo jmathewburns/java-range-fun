@@ -32,7 +32,7 @@ class ReverseProgressionIterator implements Iterator<Integer> {
     ReverseProgressionIterator(int start, int end, int step) {
         this.current = start;
         this.end = end;
-        this.step = Math.abs(step);
+        this.step = step;
     }
 
     @Override

@@ -22,7 +22,6 @@ package xyz.jmburns.rangefun;
 
 import java.util.Iterator;
 import java.util.Objects;
-import java.util.PrimitiveIterator;
 
 /**
  * This class represents an progression of integers, as built by the
@@ -39,6 +38,8 @@ public final class Progression implements Iterable<Integer>, Comparable<Progress
     private final int step;
     private final boolean backwards;
 
+    private int length = -1;
+
     Progression(int start, int end, int step) {
         this.backwards = (start > end);
 
@@ -49,7 +50,11 @@ public final class Progression implements Iterable<Integer>, Comparable<Progress
 
     /**
      * Creates a new {@code Progression} instance whose starting value is this progression's ending value,
-     * and vice versa. This method is intended to be used to easily iterate backwards over an array.
+     * and whose ending value is this progression's starting value. For example,
+     * {@code progression(1, 5, 1).reverse().equals(progression(5, 1, 1)}
+     * will evaluate to {@code true}.
+     *
+     * This method is intended to be used to easily iterate backwards over an array.
      *
      * @return a new Progression instance, created from this one, but with values swapped so that the
      *         progression is iterated backwards.
@@ -73,7 +78,7 @@ public final class Progression implements Iterable<Integer>, Comparable<Progress
      */
     public boolean contains(int integer) {
         return (integer > low || integer < high) && 
-               (integer - low) % step == 0;
+               Math.floorMod(integer - low, step) == 0;
     }
 
     /**
@@ -91,8 +96,20 @@ public final class Progression implements Iterable<Integer>, Comparable<Progress
      * @return the integer at the specified index in the progression
      * @see Progression#toArray()
      * @see xyz.jmburns.rangefun.Progressions#range(int, int)
+     * @throws IndexOutOfBoundsException if the given index is negative or greater than or equal to {@link #length()}
      */
     public int get(int index) {
+        ensureValidIndex(index);
+        return calculateForIndex(index);
+    }
+
+    private void ensureValidIndex(int index) {
+        if (index < 0 || index >= length()) {
+            throw new IndexOutOfBoundsException();
+        }
+    }
+
+    private int calculateForIndex(int index) {
         if (backwards) {
             return high - (step * index);
         }
@@ -123,11 +140,15 @@ public final class Progression implements Iterable<Integer>, Comparable<Progress
 
     /**
      * Calculates the length of this progression, with the step value taken into account.
+     * For example, {@code progression(0, 6, 2).length()} will evaluate to 3.
      *
      * @return the length of the progression
      */
     public int length() {
-        return ((high - low) / step) + 1;
+        if (length == -1) {
+            length = ((high - low) / step) + 1;
+        }
+        return length;
     }
 
     /**

@@ -64,17 +64,50 @@ public class ProgressionTest {
     }
 
     @Test
+    public void progressionShouldContainNegativeInteger() {
+        Progression progression = new Progression(-10, 3, 2);
+        assertTrue(progression.contains(-8));
+    }
+
+    @Test
+    public void reverseProgressionShouldContainNegativeInteger() {
+        Progression progression = new Progression(5, -5, 1);
+        assertTrue(progression.contains(-3));
+    }
+
+    @Test
     public void shouldGetCorrectIntegerAtSimpleIndex() {
         Progression progression = new Progression(10, 20, 2);
 
-        assertEquals(14, progression.get(2));
+        int integerAtIndex = progression.get(2);
+
+        assertEquals(14, integerAtIndex);
     }
 
     @Test
     public void shouldGetCorrectIntegerAtReversedIndex() {
         Progression progression = new Progression(5, 1, 3);
 
-        assertEquals(2, progression.get(1));
+        int integerAtIndex = progression.get(1);
+
+        assertEquals(2, integerAtIndex);
+    }
+
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void shouldThrowExceptionForNegativeIndex() {
+        Progression progression = new Progression(10, 20, 2);
+
+        progression.get(-1);
+        fail();
+    }
+
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void shouldThrowExceptionForTooHighIndex() {
+        Progression progression = new Progression(10, 20, 2);
+
+        int length = progression.length();
+        progression.get(length + 2);
+        fail();
     }
 
     @Test
