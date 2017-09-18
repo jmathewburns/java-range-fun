@@ -29,8 +29,8 @@ import java.util.Objects;
  *
  * The class is also fully suitable for use in Map and Collection instances,
  * since it provides well-behaved implementations of {@code equals},
- * {@code hashCode}, and {@code compareTo}. It is also completely immutable,
- * and is thus guaranteed to be thread-safe.
+ * {@code hashCode}, and {@code compareTo}. It is also designed to be
+ * completely immutable.
  */
 public final class Progression implements Iterable<Integer>, Comparable<Progression> {
     private final int low;

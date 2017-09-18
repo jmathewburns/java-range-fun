@@ -79,7 +79,7 @@ Generates: `array.length - 1, array.length - 2, ..., 0`
 
 Progression of x to y with a custom step of z, backwards:
 ```java
-range(x, y, z).reverse()
+progression(x, y, z).reverse()
 ```
 Or, simply:
 ```java
