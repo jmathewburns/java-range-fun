@@ -22,10 +22,8 @@ package xyz.jmburns.rangefun;
 
 import org.junit.Test;
 
-import java.util.Arrays;
-
 import static org.junit.Assert.*;
-import static xyz.jmburns.rangefun.ProgressionTestHelper.progressionReturnsExpectedInts;
+import static xyz.jmburns.rangefun.ProgressionTestHelper.progressionReturnsOnlyExpectedIntegers;
 
 public class ProgressionTest {
     @Test
@@ -38,7 +36,7 @@ public class ProgressionTest {
         Progression progression = new Progression(0, 4, 2);
         int[] expectedIntegers = {0, 2, 4};
 
-        assertTrue(progressionReturnsExpectedInts(progression, expectedIntegers));
+        assertTrue(progressionReturnsOnlyExpectedIntegers(progression, expectedIntegers));
     }
 
     @Test
@@ -86,7 +84,7 @@ public class ProgressionTest {
 
         Progression reversed = initial.reverse();
 
-        assertTrue(progressionReturnsExpectedInts(reversed, expected));
+        assertTrue(progressionReturnsOnlyExpectedIntegers(reversed, expected));
     }
 
     @Test
@@ -94,9 +92,19 @@ public class ProgressionTest {
         Progression progression = new Progression(0, 30, 5);
         int expected = 7;
 
-        int actual = progression.length();
+        int length = progression.length();
 
-        assertEquals(expected, actual);
+        assertEquals(expected, length);
+    }
+
+    @Test
+    public void shouldCalculateCorrectLengthForNegativeStart() {
+        Progression progression = new Progression(-5, 30, 5);
+        int expected = 8;
+
+        int length = progression.length();
+
+        assertEquals(expected, length);
     }
 
     @Test
