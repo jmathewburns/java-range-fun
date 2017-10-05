@@ -5,6 +5,7 @@ plugins {
     id 'maven'
     id 'signing'
 
+    id 'org.gradle.java.experimental-jigsaw' version '0.1.1'
     id 'com.github.hierynomus.license' version '0.11.0'
 }
 
@@ -12,7 +13,9 @@ group projectGroup
 version projectVersion
 archivesBaseName = projectArtifactId
 
-sourceCompatibility = 1.8
+javaModule.name = "$group.$archivesBaseName"
+
+sourceCompatibility = 1.9
 
 repositories {
     mavenCentral()
