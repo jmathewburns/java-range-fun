@@ -99,14 +99,8 @@ public final class Progression implements Iterable<Integer>, Comparable<Progress
      * @throws IndexOutOfBoundsException if the given index is negative or greater than or equal to {@link #length()}
      */
     public int get(int index) {
-        ensureValidIndex(index);
+        Objects.checkIndex(index, length());
         return calculateForIndex(index);
-    }
-
-    private void ensureValidIndex(int index) {
-        if (index < 0 || index >= length()) {
-            throw new IndexOutOfBoundsException();
-        }
     }
 
     private int calculateForIndex(int index) {
