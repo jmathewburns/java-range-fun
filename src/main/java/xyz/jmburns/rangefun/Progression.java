@@ -157,9 +157,9 @@ public final class Progression implements Iterable<Integer>, Comparable<Progress
     @Override
     public Iterator<Integer> iterator() {
         if (backwards) {
-            return new ReverseProgressionIterator(high, low, step);
+            return ProgressionIterator.descending(high, low, step);
         }
-        return new SimpleProgressionIterator(low, high, step);
+        return ProgressionIterator.ascending(low, high, step);
     }
 
     @Override
