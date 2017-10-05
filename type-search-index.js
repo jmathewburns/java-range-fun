@@ -1,0 +1,1 @@
+typeSearchIndex = [{"p":"xyz.jmburns.rangefun","l":"Progression"},{"p":"xyz.jmburns.rangefun","l":"Progressions"}]
