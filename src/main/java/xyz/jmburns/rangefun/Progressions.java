@@ -47,10 +47,13 @@ public class Progressions {
      *
      * @param start the first integer in the progression, inclusive
      * @param end the point which no integer in the progression will go over, but may or may not be equal to
-     * @param step the amount by which each integer in the progression will differ from the previous one
+     * @param step the amount by which each integer in the progression will differ from the previous one.
+     *             Cannot be zero
      * @return a new Progression representing the given start, end, and step values
+     * @throws IllegalArgumentException if step == 0
      */
     public static Progression progression(int start, int end, int step) {
+        if (step == 0) { throw new IllegalArgumentException("step cannot be zero"); }
         return new Progression(start, end, step);
     }
 
