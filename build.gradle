@@ -9,106 +9,24 @@ plugins {
     id 'com.github.hierynomus.license' version '0.11.0'
 }
 
-group projectGroup
-version projectVersion
-archivesBaseName = projectArtifactId
-
-javaModule.name = "$group.$archivesBaseName"
-
-sourceCompatibility = 1.9
+apply from: 'gradle/base.gradle'
+apply from: 'gradle/dependencies.gradle'
+apply from: 'gradle/licensing.gradle'
+apply from: 'gradle/publishing.gradle'
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    testCompile 'junit:junit:4.12'
-}
-
-task javadocJar(type: Jar) {
-   classifier = 'javadoc'
-   from javadoc
-}
-
-task sourcesJar(type: Jar) {
-   classifier = 'sources'
-   from sourceSets.main.allSource
+    testCompile libraries.junit
 }
 
 javadoc {
-    /* Add support for tasty new Java 8 tags */
+    /* Add support for tasty Java 8 tags */
     options.tags = [
             'apiNote:a:API Note:',
             'implSpec:a:Implementation Requirements:',
             'implNote:a:Implementation Note:'
     ]
-}
-
-license {
-    header = rootProject.file('gradle/HEADER')
-    strictCheck = true
-    ignoreFailures = true
-    mapping {
-        java = 'SLASHSTAR_STYLE'
-        fxml = 'XML_STYLE'
-    }
-    ext.year = projectYear
-    ext.author = projectAuthor
-    ext.project = projectName
-}
-
-artifacts {
-   archives javadocJar, sourcesJar
-}
-
-signing {
-   sign configurations.archives
-}
-
-uploadArchives {
-   repositories {
-      mavenDeployer {
-         beforeDeployment {
-            MavenDeployment deployment -> signing.signPom(deployment)
-         }
-         
-         repository(url: 'https://oss.sonatype.org/service/local/staging/deploy/maven2/') {
-            authentication(userName: ossrhUserName, password: ossrhPassword)
-         }
-         
-         snapshotRepository(url: 'https://oss.sonatype.org/content/repositories/snapshots/') {
-            authentication(userName: ossrhUserName, password: ossrhPassword)
-         }
-         
-         pom.project {
-            name projectName
-            packaging 'jar'
-            artifactId projectArtifactId
-            description projectDescription
-            url projectGithubUrl
-            
-            scm {
-               connection "scm:git:$projectGithubLink"
-               developerConnection projectScmLink
-               url projectGithubLink
-            }
-            
-            licenses {
-               license {
-                  name 'The MIT License (MIT)'
-                  url 'http://opensource.org/licenses/MIT'
-                  distribution 'repo'
-               }
-            }
-            
-            developers {
-               developer {
-                  id 'jmathewburns'
-                  name 'Jacques Burns'
-                  email 'dev@rangefun.xyz'
-               }
-            }
-         }
-      }
-   }
 }

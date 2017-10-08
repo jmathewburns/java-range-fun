@@ -1,0 +1,19 @@
+apply from: 'gradle/version.gradle'
+
+ext.config = [
+    name: 'Range Fun(ctions)',
+    author: 'Jacques Burns',
+    year: '2017',
+
+    group: 'xyz.jmburns',
+    artifact: 'rangefun',
+    version: ext.version,
+    description: """
+        A small library to combine the power of the traditional 
+        for loop with the simplicity of the for-each.
+    """,
+
+    github_url: 'https://github.com/jmathewburns/rangefun',
+    github_link: 'https://github.com/jmathewburns/rangefun.git',
+    scm_link: 'scm:git:git@github.com:jmathewburns/java-range-fun.git'
+]
