@@ -1,15 +1,15 @@
 package xyz.jmburns.rangefun;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Iterator;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 import static xyz.jmburns.rangefun.ProgressionTestHelper.iteratorReturnsOnlyExpectedIntegers;
 
-public class ProgressionIteratorTest {
+class ProgressionIteratorTest {
     @Test
-    public void shouldReturnCorrectReversedRangeIterator() {
+    void shouldReturnCorrectReversedRangeIterator() {
         int[] expectedIntegers = { 3, 2, 1, };
         Iterator<Integer> iterator = ProgressionIterator.descending(3, 1, 1);
 
@@ -17,7 +17,7 @@ public class ProgressionIteratorTest {
     }
 
     @Test
-    public void shouldReturnCorrectReversedProgressionIterator() {
+    void shouldReturnCorrectReversedProgressionIterator() {
         int[] expectedIntegers = { 6, 4, 2, };
         Iterator<Integer> iterator = ProgressionIterator.descending(6, 1, 2);
 
@@ -25,7 +25,7 @@ public class ProgressionIteratorTest {
     }
 
     @Test
-    public void malformedDescendingProgressionShouldBeEmpty() {
+    void malformedDescendingProgressionShouldBeEmpty() {
         int high = 0, low = 6, step = 3;
         Iterator<Integer> iterator = ProgressionIterator.descending(high, low, step);
 
@@ -35,7 +35,7 @@ public class ProgressionIteratorTest {
     }
 
     @Test
-    public void malformedAscendingProgressionShouldBeEmpty() {
+    void malformedAscendingProgressionShouldBeEmpty() {
         int low = 6, high = 0, step = 3;
         Iterator<Integer> iterator = ProgressionIterator.ascending(low, high, step);
 
@@ -45,7 +45,7 @@ public class ProgressionIteratorTest {
     }
 
     @Test
-    public void equivalentInstancesShouldBeEqual() {
+    void equivalentInstancesShouldBeEqual() {
         int high = 6, low = 0, step = 3;
         Iterator<Integer> iterator1 = ProgressionIterator.descending(high, low, step);
         Iterator<Integer> iterator2 = ProgressionIterator.descending(high, low, step);
@@ -54,7 +54,7 @@ public class ProgressionIteratorTest {
     }
 
     @Test
-    public void nonEquivalentInstancesShouldBeUnequal() {
+    void nonEquivalentInstancesShouldBeUnequal() {
         int high = 30, low = 15, step = 10;
         Iterator<Integer> iterator1 = ProgressionIterator.descending(high, low, step + 4);
         Iterator<Integer> iterator2 = ProgressionIterator.descending(high, low, step);
@@ -63,7 +63,7 @@ public class ProgressionIteratorTest {
     }
     
     @Test
-    public void shouldReturnCorrectRangeIterator() {
+    void shouldReturnCorrectRangeIterator() {
         int[] expectedIntegers = { 1, 2, 3, };
         Iterator<Integer> rangeIterator = ProgressionIterator.ascending(1, 3, 1);
 
@@ -71,7 +71,7 @@ public class ProgressionIteratorTest {
     }
 
     @Test
-    public void shouldReturnCorrectProgressionIterator() {
+    void shouldReturnCorrectProgressionIterator() {
         int[] expectedIntegers = { 1, 3, 5, };
         Iterator<Integer> rangeIterator = ProgressionIterator.ascending(1, 6, 2);
 
@@ -79,7 +79,7 @@ public class ProgressionIteratorTest {
     }
     
     @Test
-    public void equivalentInstancesShouldReturnEqualHashCodes() {
+    void equivalentInstancesShouldReturnEqualHashCodes() {
         int low = 5, high = 50, step = 3;
         Iterator<Integer> iterator1 = ProgressionIterator.ascending(low, high, step);
         Iterator<Integer> iterator2 = ProgressionIterator.ascending(low, high, step);
@@ -91,7 +91,7 @@ public class ProgressionIteratorTest {
     }
 
     @Test
-    public void nonEquivalentInstancesShouldReturnUnequalHashCodes() {
+    void nonEquivalentInstancesShouldReturnUnequalHashCodes() {
         int low = 20, high = 61, step = 30;
         Iterator<Integer> iterator1 = ProgressionIterator.ascending(low, high - 10, step);
         Iterator<Integer> iterator2 = ProgressionIterator.ascending(low, high, step);

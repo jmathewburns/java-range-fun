@@ -20,29 +20,28 @@
  */
 package xyz.jmburns.rangefun;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static xyz.jmburns.rangefun.ProgressionTestHelper.progressionReturnsOnlyExpectedIntegers;
 
-public class ProgressionsTest {
+class ProgressionsTest {
     @Test
-    public void shouldReturnNonNullBasicRange() {
+    void shouldReturnNonNullBasicRange() {
         Progression range = Progressions.range(1, 3);
 
         assertNotNull(range);
     }
     
     @Test
-    public void shouldReturnNonNullProgression() {
+    void shouldReturnNonNullProgression() {
         Progression progression = Progressions.progression(0, 4, 2);
 
         assertNotNull(progression);
     }
 
     @Test
-    public void shouldReturnCorrectRange() {
+    void shouldReturnCorrectRange() {
         Progression range = Progressions.range(1, 3);
         int[] expected = {1, 2, 3};
 
@@ -50,7 +49,7 @@ public class ProgressionsTest {
     }
 
     @Test
-    public void shouldReturnCorrectProgression() {
+    void shouldReturnCorrectProgression() {
         Progression progression = Progressions.progression(0, 4, 2);
         int[] expected = {0, 2, 4};
 
@@ -58,7 +57,7 @@ public class ProgressionsTest {
     }
 
     @Test
-    public void shouldReturnCorrectCount() {
+    void shouldReturnCorrectCount() {
         Progression count = Progressions.count(4);
         int[] expected = {0, 1, 2, 3};
 
@@ -66,7 +65,7 @@ public class ProgressionsTest {
     }
 
     @Test
-    public void shouldReturnCorrectRangeOfObjectArray() {
+    void shouldReturnCorrectRangeOfObjectArray() {
         Object[] array = new Object[6];
         int[] expected = { 0, 1, 2, 3, 4, 5, };
 
@@ -76,7 +75,7 @@ public class ProgressionsTest {
     }
 
     @Test
-    public void shouldReturnCorrectRangeOfIntArray() {
+    void shouldReturnCorrectRangeOfIntArray() {
         int[] array = new int[6];
         int[] expected = { 0, 1, 2, 3, 4, 5, };
 
@@ -86,7 +85,7 @@ public class ProgressionsTest {
     }
 
     @Test
-    public void shouldReturnCorrectRangeOfLongArray() {
+    void shouldReturnCorrectRangeOfLongArray() {
         long[] array = new long[6];
         int[] expected = { 0, 1, 2, 3, 4, 5, };
 
@@ -96,7 +95,7 @@ public class ProgressionsTest {
     }
 
     @Test
-    public void shouldReturnCorrectRangeOfFloatArray() {
+    void shouldReturnCorrectRangeOfFloatArray() {
         float[] array = new float[6];
         int[] expected = { 0, 1, 2, 3, 4, 5, };
 
@@ -106,7 +105,7 @@ public class ProgressionsTest {
     }
 
     @Test
-    public void shouldReturnCorrectRangeOfDoubleArray() {
+    void shouldReturnCorrectRangeOfDoubleArray() {
         double[] array = new double[3];
         int[] expected = { 0, 1, 2, };
 
@@ -116,7 +115,7 @@ public class ProgressionsTest {
     }
 
     @Test
-    public void shouldReturnCorrectRangeOfByteArray() {
+    void shouldReturnCorrectRangeOfByteArray() {
         byte[] array = new byte[1];
         int[] expected = { 0, };
 
@@ -126,7 +125,7 @@ public class ProgressionsTest {
     }
 
     @Test
-    public void shouldReturnCorrectRangeOfCharArray() {
+    void shouldReturnCorrectRangeOfCharArray() {
         char[] array = new char[5];
         int[] expected = { 0, 1, 2, 3, 4, };
 
@@ -136,7 +135,7 @@ public class ProgressionsTest {
     }
 
     @Test
-    public void shouldReturnCorrectRangeOfShortArray() {
+    void shouldReturnCorrectRangeOfShortArray() {
         short[] array = new short[4];
         int[] expected = { 0, 1, 2, 3, };
 
