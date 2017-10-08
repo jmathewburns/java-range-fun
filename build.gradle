@@ -1,13 +1,26 @@
-plugins {
-    id 'idea'
-    id 'java'
-    id 'java-library-distribution'
-    id 'maven'
-    id 'signing'
-
-    id 'org.gradle.java.experimental-jigsaw' version '0.1.1'
-    id 'com.github.hierynomus.license' version '0.11.0'
+buildscript {
+    repositories {
+        mavenCentral()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "gradle.plugin.nl.javadude.gradle.plugins:license-gradle-plugin:0.14.0"
+        classpath "gradle.plugin.org.gradle.java:experimental-jigsaw:0.1.1"
+        classpath 'org.junit.platform:junit-platform-gradle-plugin:1.0.1'
+    }
 }
+
+apply plugin: 'idea'
+apply plugin: 'java'
+apply plugin: 'java-library-distribution'
+apply plugin: 'maven'
+apply plugin: 'signing'
+
+apply plugin: "org.gradle.java.experimental-jigsaw"
+apply plugin: "com.github.hierynomus.license"
+apply plugin: 'org.junit.platform.gradle.plugin'
 
 group projectGroup
 version projectVersion
@@ -22,7 +35,10 @@ repositories {
 }
 
 dependencies {
-    testCompile 'junit:junit:4.12'
+    testCompile 'org.junit.jupiter:junit-jupiter-api:5.0.1'
+    testRuntime 'org.junit.jupiter:junit-jupiter-engine:5.0.1'
+    // To avoid compiler warnings about @API annotations in JUnit code
+    testCompileOnly 'org.apiguardian:apiguardian-api:1.0.0'
 }
 
 task javadocJar(type: Jar) {
