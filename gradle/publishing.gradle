@@ -1,0 +1,67 @@
+apply from: 'gradle/base.gradle'
+
+task javadocJar(type: Jar) {
+    classifier = 'javadoc'
+    from javadoc
+}
+
+task sourcesJar(type: Jar) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+artifacts {
+    archives javadocJar, sourcesJar
+}
+
+signing {
+    sign configurations.archives
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            beforeDeployment {
+                MavenDeployment deployment -> signing.signPom(deployment)
+            }
+
+            repository(url: 'https://oss.sonatype.org/service/local/staging/deploy/maven2/') {
+                authentication(userName: ossrhUserName, password: ossrhPassword)
+            }
+
+            snapshotRepository(url: 'https://oss.sonatype.org/content/repositories/snapshots/') {
+                authentication(userName: ossrhUserName, password: ossrhPassword)
+            }
+
+            pom.project {
+                name config.name
+                packaging 'jar'
+                artifactId config.artifact
+                description config.description
+                url config.github_url
+
+                scm {
+                    connection "scm:git:$config.github_link"
+                    developerConnection config.scm_link
+                    url config.github_link
+                }
+
+                licenses {
+                    license {
+                        name 'The MIT License (MIT)'
+                        url 'http://opensource.org/licenses/MIT'
+                        distribution 'repo'
+                    }
+                }
+
+                developers {
+                    developer {
+                        id 'jmathewburns'
+                        name 'Jacques Burns'
+                        email 'dev@rangefun.xyz'
+                    }
+                }
+            }
+        }
+    }
+}
