@@ -15,7 +15,7 @@ archivesBaseName = projectArtifactId
 
 javaModule.name = "$group.$archivesBaseName"
 
-sourceCompatibility = 1.9
+sourceCompatibility = 9
 
 repositories {
     mavenCentral()
