@@ -1,3 +1,8 @@
+[![Javadocs](http://javadoc.io/badge/xyz.jmburns/rangefun.svg?color=green)](http://javadoc.io/doc/xyz.jmburns/rangefun)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)]
+[![JDK](https://img.shields.io/badge/JDK-9-yellowgreen.svg)]
+
+
 # Java Range Fun(ctions)
 
 A lightweight Java implementation of Python's `range` function, but with better naming.
