@@ -9,9 +9,11 @@ plugins {
     id 'com.github.hierynomus.license' version '0.11.0'
 }
 
-group projectGroup
-version projectVersion
-archivesBaseName = projectArtifactId
+apply from: 'gradle/config.gradle'
+
+group config.group
+version config.version
+archivesBaseName = config.artifact
 
 javaModule.name = "$group.$archivesBaseName"
 
@@ -36,7 +38,7 @@ task sourcesJar(type: Jar) {
 }
 
 javadoc {
-    /* Add support for tasty new Java 8 tags */
+    /* Add support for tasty Java 8 tags */
     options.tags = [
             'apiNote:a:API Note:',
             'implSpec:a:Implementation Requirements:',
@@ -52,9 +54,9 @@ license {
         java = 'SLASHSTAR_STYLE'
         fxml = 'XML_STYLE'
     }
-    ext.year = projectYear
-    ext.author = projectAuthor
-    ext.project = projectName
+    ext.year = config.year
+    ext.author = config.author
+    ext.project = config.name
 }
 
 artifacts {
@@ -81,16 +83,16 @@ uploadArchives {
          }
          
          pom.project {
-            name projectName
+            name config.name
             packaging 'jar'
-            artifactId projectArtifactId
-            description projectDescription
-            url projectGithubUrl
+            artifactId config.artifact
+            description config.description
+            url config.github_url
             
             scm {
-               connection "scm:git:$projectGithubLink"
-               developerConnection projectScmLink
-               url projectGithubLink
+               connection "scm:git:$config.github_link"
+               developerConnection config.scm_link
+               url config.github_link
             }
             
             licenses {
