@@ -11,3 +11,12 @@ archivesBaseName = config.artifact
 javaModule.name = "$group.$archivesBaseName"
 
 sourceCompatibility = 9
+
+javadoc {
+    /* Add support for tasty Java 8 tags */
+    options.tags = [
+            'apiNote:a:API Note:',
+            'implSpec:a:Implementation Requirements:',
+            'implNote:a:Implementation Note:'
+    ]
+}

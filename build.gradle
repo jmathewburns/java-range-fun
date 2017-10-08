@@ -1,13 +1,25 @@
-plugins {
-    id 'idea'
-    id 'java'
-    id 'java-library-distribution'
-    id 'maven'
-    id 'signing'
-
-    id 'org.gradle.java.experimental-jigsaw' version '0.1.1'
-    id 'com.github.hierynomus.license' version '0.11.0'
+buildscript {
+    repositories {
+        mavenCentral()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "gradle.plugin.nl.javadude.gradle.plugins:license-gradle-plugin:0.14.0"
+        classpath "gradle.plugin.org.gradle.java:experimental-jigsaw:0.1.1"
+        classpath 'org.junit.platform:junit-platform-gradle-plugin:1.0.1'
+    }
 }
+
+apply plugin: 'idea'
+apply plugin: 'java'
+apply plugin: 'java-library-distribution'
+
+
+//apply plugin: "org.gradle.java.experimental-jigsaw"
+apply plugin: "com.github.hierynomus.license"
+apply plugin: 'org.junit.platform.gradle.plugin'
 
 apply from: 'gradle/base.gradle'
 apply from: 'gradle/dependencies.gradle'
@@ -19,14 +31,7 @@ repositories {
 }
 
 dependencies {
-    testCompile libraries.junit
-}
-
-javadoc {
-    /* Add support for tasty Java 8 tags */
-    options.tags = [
-            'apiNote:a:API Note:',
-            'implSpec:a:Implementation Requirements:',
-            'implNote:a:Implementation Note:'
-    ]
+    testCompile libraries.junit_api
+    testRuntime libraries.junit_engine
+    testCompileOnly libraries.api_guardian
 }

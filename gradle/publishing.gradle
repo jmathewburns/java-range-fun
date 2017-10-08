@@ -1,5 +1,8 @@
 apply from: 'gradle/base.gradle'
 
+apply plugin: 'maven'
+apply plugin: 'signing'
+
 task javadocJar(type: Jar) {
     classifier = 'javadoc'
     from javadoc
