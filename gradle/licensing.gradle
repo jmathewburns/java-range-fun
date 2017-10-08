@@ -1,5 +1,7 @@
 apply from: 'gradle/config.gradle'
 
+apply plugin: 'com.github.hierynomus.license'
+
 license {
     header = rootProject.file('gradle/HEADER')
     strictCheck = true
