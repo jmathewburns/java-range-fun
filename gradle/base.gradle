@@ -8,8 +8,6 @@ group config.group
 version config.version
 archivesBaseName = config.artifact
 
-javaModule.name = "$group.$archivesBaseName"
-
 sourceCompatibility = 9
 
 javadoc {
