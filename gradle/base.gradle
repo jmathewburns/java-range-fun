@@ -1,7 +1,6 @@
 apply from: 'gradle/config.gradle'
 
 apply plugin: 'java'
-apply plugin: 'idea'
 apply plugin: 'java-library-distribution'
 apply plugin: 'com.zyxist.chainsaw'
 
