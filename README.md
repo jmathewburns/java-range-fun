@@ -10,7 +10,7 @@ A lightweight Java implementation of Python's `range` function, but with better 
 ## Usage
 
 You can find source, javadoc, and binary jars at Maven Central, under the groupId "xyz.jmburns", and the artifactId 
-"rangefun". The latest version is 2.0.1. Using that, you can add the dependency to you project, just like any other.
+"rangefun". The latest version is 3.0.0. Using that, you can add the dependency to you project, just like any other.
 
 For example, with Gradle:
 ```
@@ -19,7 +19,7 @@ repositories {
 }
 
 dependencies {
-   compile 'xyz.jmburns:rangefun:2.0.1'
+   compile 'xyz.jmburns:rangefun:3.0.0'
 }
 ```
 
