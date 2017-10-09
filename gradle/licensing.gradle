@@ -1,4 +1,4 @@
-apply plugin: 'com.github.hierynomus.license'
+apply plugin: plugin.license
 
 license {
     header = rootProject.file('gradle/HEADER')

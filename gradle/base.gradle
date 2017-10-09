@@ -1,5 +1,5 @@
-apply plugin: 'java'
-apply plugin: 'com.zyxist.chainsaw'
+apply plugin: plugin.java
+apply plugin: plugin.jigsaw
 
 group config.group
 version config.version

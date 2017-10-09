@@ -12,14 +12,24 @@ buildscript {
     }
 }
 
-apply plugin: 'org.junit.platform.gradle.plugin'
+ext.plugin = [
+        java: 'java',
+        maven: 'maven',
+        signing: 'signing',
+        library_dist: 'java-library-distribution',
 
+        junit_platform: 'org.junit.platform.gradle.plugin',
+        license: 'com.github.hierynomus.license',
+        jigsaw: 'com.zyxist.chainsaw',
+]
 
 apply from: 'gradle/config.gradle'
 apply from: 'gradle/base.gradle'
 apply from: 'gradle/dependencies.gradle'
 apply from: 'gradle/licensing.gradle'
 apply from: 'gradle/publishing.gradle'
+
+apply plugin: plugin.junit_platform
 
 repositories {
     mavenCentral()
