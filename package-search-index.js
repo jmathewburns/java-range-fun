@@ -1,1 +1,0 @@
-packageSearchIndex = [{"m":"xyz.jmburns.rangefun","l":"xyz.jmburns.rangefun"}]
