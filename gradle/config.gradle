@@ -1,4 +1,4 @@
-def version = file('gradle/version.txt').text
+def versionFromFile = file('gradle/version.txt').text
 
 ext.config = [
     name: 'Range Fun(ctions)',
@@ -7,7 +7,7 @@ ext.config = [
 
     group: 'xyz.jmburns',
     artifact: 'rangefun',
-    version: version,
+    version: versionFromFile,
     description: """
         A small library to combine the power of the traditional 
         for loop with the simplicity of the for-each.
