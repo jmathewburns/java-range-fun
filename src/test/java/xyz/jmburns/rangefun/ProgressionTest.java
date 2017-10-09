@@ -20,6 +20,7 @@
  */
 package xyz.jmburns.rangefun;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -52,31 +53,36 @@ class ProgressionTest {
     }
 
     @Test
-    void reverseProgressionShouldContainInteger() {
+    @DisplayName("contains(int) should return true for an integer that is in the descending progression")
+    void descendingProgressionShouldContainInteger() {
         Progression progression = new Progression(6, 0, 3);
         assertTrue(progression.contains(3));
     }
 
     @Test
-    void reverseProgressionShouldNotContainInteger() {
+    @DisplayName("contains(int) should return false for an integer that is not in the descending progression")
+    void descendingProgressionShouldNotContainInteger() {
         Progression progression = new Progression(50, 0, 2);
         assertFalse(progression.contains(25));
     }
 
     @Test
+    @DisplayName("contains(int) should return true for an integer that is in the progression, even when it is negative")
     void progressionShouldContainNegativeInteger() {
         Progression progression = new Progression(-10, 3, 2);
         assertTrue(progression.contains(-8));
     }
 
     @Test
-    void reverseProgressionShouldContainNegativeInteger() {
+    @DisplayName("contains(int) should return true for an integer that is in the descending progression, even when it is negative")
+    void descendingProgressionShouldContainNegativeInteger() {
         Progression progression = new Progression(5, -5, 1);
         assertTrue(progression.contains(-3));
     }
 
     @Test
-    void shouldGetCorrectIntegerAtSimpleIndex() {
+    @DisplayName("get(int) should return the correct, expected, value")
+    void shouldGetCorrectIntegerAtAscendingIndex() {
         Progression progression = new Progression(10, 20, 2);
 
         int integerAtIndex = progression.get(2);
@@ -85,7 +91,8 @@ class ProgressionTest {
     }
 
     @Test
-    void shouldGetCorrectIntegerAtReversedIndex() {
+    @DisplayName("get(int) should return the correct, expected, value, even when the progression is descending")
+    void shouldGetCorrectIntegerAtDescendingIndex() {
         Progression progression = new Progression(5, 1, 3);
 
         int integerAtIndex = progression.get(1);
@@ -94,6 +101,7 @@ class ProgressionTest {
     }
 
     @Test
+    @DisplayName("get(int) should throw an exception when the given index is negative")
     void shouldThrowExceptionForNegativeIndex() {
         Progression progression = new Progression(10, 20, 2);
 
@@ -101,6 +109,7 @@ class ProgressionTest {
     }
 
     @Test
+    @DisplayName("get(int) should throw an exception when the given index is >= length()")
     void shouldThrowExceptionForTooHighIndex() {
         Progression progression = new Progression(10, 20, 2);
 
@@ -109,6 +118,7 @@ class ProgressionTest {
     }
 
     @Test
+    @DisplayName("reverse() should return a progression of the correct, expected, values")
     void reversedProgressionShouldReturnCorrectIntegers() {
         int[] expected = { 7, 6, 5, 4, 3, 2, };
         Progression initial = new Progression(2, 7, 1);
@@ -119,6 +129,7 @@ class ProgressionTest {
     }
 
     @Test
+    @DisplayName("length() should return the correct result")
     void shouldCalculateCorrectLength() {
         Progression progression = new Progression(0, 30, 5);
         int expected = 7;
@@ -129,6 +140,7 @@ class ProgressionTest {
     }
 
     @Test
+    @DisplayName("length() should return the correct result, even when the start of the progression is negative")
     void shouldCalculateCorrectLengthForNegativeStart() {
         Progression progression = new Progression(-5, 30, 5);
         int expected = 8;
@@ -139,6 +151,7 @@ class ProgressionTest {
     }
 
     @Test
+    @DisplayName("toArray() should return an array of all the correct integers in a given progression")
     void shouldCreateCorrectArrayRepresentation() {
         Integer[] expected = { 1, 6, 11, 16, 21, };
         Progression progression = new Progression(1, 25, 5);
@@ -149,6 +162,7 @@ class ProgressionTest {
     }
 
     @Test
+    @DisplayName("equals() should return true for Progression instances with the same values")
     void equivalentInstancesShouldBeEqual() {
         Progression progression1 = new Progression(0, 10, 5);
         Progression progression2 = new Progression(0, 10, 5);
@@ -157,6 +171,7 @@ class ProgressionTest {
     }
 
     @Test
+    @DisplayName("equals() should return false for Progression instances with different values")
     void nonEquivalentInstancesShouldBeUnequal() {
         Progression progression1 = new Progression(0, 10, 5);
         Progression progression2 = new Progression(0, 4, 2);
@@ -165,6 +180,7 @@ class ProgressionTest {
     }
 
     @Test
+    @DisplayName("hashCode() should return the same value for Progression instances with the same values")
     void equivalentInstancesShouldReturnSameHashCode() {
         Progression progression1 = new Progression(0, 10, 5);
         Progression progression2 = new Progression(0, 10, 5);
@@ -173,6 +189,7 @@ class ProgressionTest {
     }
 
     @Test
+    @DisplayName("hashCode() should return different values for Progression instances with the different values")
     void nonEquivalentInstancesShouldReturnDifferentHashCode() {
         Progression progression1 = new Progression(0, 10, 5);
         Progression progression2 = new Progression(0, 4, 2);
