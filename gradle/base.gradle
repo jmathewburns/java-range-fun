@@ -1,0 +1,20 @@
+apply from: 'gradle/config.gradle'
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'java-library-distribution'
+
+group config.group
+version config.version
+archivesBaseName = config.artifact
+
+sourceCompatibility = 9
+
+javadoc {
+    /* Add support for tasty Java 8 tags */
+    options.tags = [
+            'apiNote:a:API Note:',
+            'implSpec:a:Implementation Requirements:',
+            'implNote:a:Implementation Note:'
+    ]
+}

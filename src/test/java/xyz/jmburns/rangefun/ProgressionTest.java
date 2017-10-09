@@ -20,19 +20,19 @@
  */
 package xyz.jmburns.rangefun;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 import static xyz.jmburns.rangefun.ProgressionTestHelper.progressionReturnsOnlyExpectedIntegers;
 
-public class ProgressionTest {
+class ProgressionTest {
     @Test
-    public void shouldCreateProgressionWithoutException() {
+    void shouldCreateProgressionWithoutException() {
         new Progression(1, 2, 3);
     }
 
     @Test
-    public void shouldReturnCorrectIterator() {
+    void shouldReturnCorrectIterator() {
         Progression progression = new Progression(0, 4, 2);
         int[] expectedIntegers = {0, 2, 4};
 
@@ -40,43 +40,43 @@ public class ProgressionTest {
     }
 
     @Test
-    public void simpleProgressionShouldContainInteger() {
+    void simpleProgressionShouldContainInteger() {
         Progression progression = new Progression(0, 6, 3);
         assertTrue(progression.contains(3));
     }
 
     @Test
-    public void simpleProgressionShouldNotContainInteger() {
+    void simpleProgressionShouldNotContainInteger() {
         Progression progression = new Progression(0, 100, 20);
         assertFalse(progression.contains(50));
     }
 
     @Test
-    public void reverseProgressionShouldContainInteger() {
+    void reverseProgressionShouldContainInteger() {
         Progression progression = new Progression(6, 0, 3);
         assertTrue(progression.contains(3));
     }
 
     @Test
-    public void reverseProgressionShouldNotContainInteger() {
+    void reverseProgressionShouldNotContainInteger() {
         Progression progression = new Progression(50, 0, 2);
         assertFalse(progression.contains(25));
     }
 
     @Test
-    public void progressionShouldContainNegativeInteger() {
+    void progressionShouldContainNegativeInteger() {
         Progression progression = new Progression(-10, 3, 2);
         assertTrue(progression.contains(-8));
     }
 
     @Test
-    public void reverseProgressionShouldContainNegativeInteger() {
+    void reverseProgressionShouldContainNegativeInteger() {
         Progression progression = new Progression(5, -5, 1);
         assertTrue(progression.contains(-3));
     }
 
     @Test
-    public void shouldGetCorrectIntegerAtSimpleIndex() {
+    void shouldGetCorrectIntegerAtSimpleIndex() {
         Progression progression = new Progression(10, 20, 2);
 
         int integerAtIndex = progression.get(2);
@@ -85,7 +85,7 @@ public class ProgressionTest {
     }
 
     @Test
-    public void shouldGetCorrectIntegerAtReversedIndex() {
+    void shouldGetCorrectIntegerAtReversedIndex() {
         Progression progression = new Progression(5, 1, 3);
 
         int integerAtIndex = progression.get(1);
@@ -93,25 +93,23 @@ public class ProgressionTest {
         assertEquals(2, integerAtIndex);
     }
 
-    @Test(expected = IndexOutOfBoundsException.class)
-    public void shouldThrowExceptionForNegativeIndex() {
+    @Test
+    void shouldThrowExceptionForNegativeIndex() {
         Progression progression = new Progression(10, 20, 2);
 
-        progression.get(-1);
-        fail();
-    }
-
-    @Test(expected = IndexOutOfBoundsException.class)
-    public void shouldThrowExceptionForTooHighIndex() {
-        Progression progression = new Progression(10, 20, 2);
-
-        int length = progression.length();
-        progression.get(length + 2);
-        fail();
+        assertThrows(IndexOutOfBoundsException.class, () -> progression.get(-1));
     }
 
     @Test
-    public void reversedProgressionShouldReturnCorrectIntegers() {
+    void shouldThrowExceptionForTooHighIndex() {
+        Progression progression = new Progression(10, 20, 2);
+
+        int length = progression.length();
+        assertThrows(IndexOutOfBoundsException.class, () -> progression.get(length + 2));
+    }
+
+    @Test
+    void reversedProgressionShouldReturnCorrectIntegers() {
         int[] expected = { 7, 6, 5, 4, 3, 2, };
         Progression initial = new Progression(2, 7, 1);
 
@@ -121,7 +119,7 @@ public class ProgressionTest {
     }
 
     @Test
-    public void shouldCalculateCorrectLength() {
+    void shouldCalculateCorrectLength() {
         Progression progression = new Progression(0, 30, 5);
         int expected = 7;
 
@@ -131,7 +129,7 @@ public class ProgressionTest {
     }
 
     @Test
-    public void shouldCalculateCorrectLengthForNegativeStart() {
+    void shouldCalculateCorrectLengthForNegativeStart() {
         Progression progression = new Progression(-5, 30, 5);
         int expected = 8;
 
@@ -141,7 +139,7 @@ public class ProgressionTest {
     }
 
     @Test
-    public void shouldCreateCorrectArrayRepresentation() {
+    void shouldCreateCorrectArrayRepresentation() {
         Integer[] expected = { 1, 6, 11, 16, 21, };
         Progression progression = new Progression(1, 25, 5);
 
@@ -151,7 +149,7 @@ public class ProgressionTest {
     }
 
     @Test
-    public void equivalentInstancesShouldBeEqual() {
+    void equivalentInstancesShouldBeEqual() {
         Progression progression1 = new Progression(0, 10, 5);
         Progression progression2 = new Progression(0, 10, 5);
 
@@ -159,7 +157,7 @@ public class ProgressionTest {
     }
 
     @Test
-    public void nonEquivalentInstancesShouldBeUnequal() {
+    void nonEquivalentInstancesShouldBeUnequal() {
         Progression progression1 = new Progression(0, 10, 5);
         Progression progression2 = new Progression(0, 4, 2);
 
@@ -167,7 +165,7 @@ public class ProgressionTest {
     }
 
     @Test
-    public void equivalentInstancesShouldReturnSameHashCode() {
+    void equivalentInstancesShouldReturnSameHashCode() {
         Progression progression1 = new Progression(0, 10, 5);
         Progression progression2 = new Progression(0, 10, 5);
 
@@ -175,7 +173,7 @@ public class ProgressionTest {
     }
 
     @Test
-    public void nonEquivalentInstancesShouldReturnDifferentHashCode() {
+    void nonEquivalentInstancesShouldReturnDifferentHashCode() {
         Progression progression1 = new Progression(0, 10, 5);
         Progression progression2 = new Progression(0, 4, 2);
 

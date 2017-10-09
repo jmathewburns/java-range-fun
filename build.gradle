@@ -1,114 +1,29 @@
-plugins {
-    id 'idea'
-    id 'java'
-    id 'java-library-distribution'
-    id 'maven'
-    id 'signing'
-
-    id 'org.gradle.java.experimental-jigsaw' version '0.1.1'
-    id 'com.github.hierynomus.license' version '0.11.0'
+buildscript {
+    repositories {
+        mavenCentral()
+        maven {
+            url 'https://plugins.gradle.org/m2/'
+        }
+    }
+    dependencies {
+        classpath 'gradle.plugin.nl.javadude.gradle.plugins:license-gradle-plugin:0.14.0'
+        classpath 'org.junit.platform:junit-platform-gradle-plugin:1.0.1'
+    }
 }
 
-group projectGroup
-version projectVersion
-archivesBaseName = projectArtifactId
+apply plugin: 'org.junit.platform.gradle.plugin'
 
-javaModule.name = "$group.$archivesBaseName"
-
-sourceCompatibility = 1.9
+apply from: 'gradle/base.gradle'
+apply from: 'gradle/dependencies.gradle'
+apply from: 'gradle/licensing.gradle'
+apply from: 'gradle/publishing.gradle'
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    testCompile 'junit:junit:4.12'
-}
-
-task javadocJar(type: Jar) {
-   classifier = 'javadoc'
-   from javadoc
-}
-
-task sourcesJar(type: Jar) {
-   classifier = 'sources'
-   from sourceSets.main.allSource
-}
-
-javadoc {
-    /* Add support for tasty new Java 8 tags */
-    options.tags = [
-            'apiNote:a:API Note:',
-            'implSpec:a:Implementation Requirements:',
-            'implNote:a:Implementation Note:'
-    ]
-}
-
-license {
-    header = rootProject.file('gradle/HEADER')
-    strictCheck = true
-    ignoreFailures = true
-    mapping {
-        java = 'SLASHSTAR_STYLE'
-        fxml = 'XML_STYLE'
-    }
-    ext.year = projectYear
-    ext.author = projectAuthor
-    ext.project = projectName
-}
-
-artifacts {
-   archives javadocJar, sourcesJar
-}
-
-signing {
-   sign configurations.archives
-}
-
-uploadArchives {
-   repositories {
-      mavenDeployer {
-         beforeDeployment {
-            MavenDeployment deployment -> signing.signPom(deployment)
-         }
-         
-         repository(url: 'https://oss.sonatype.org/service/local/staging/deploy/maven2/') {
-            authentication(userName: ossrhUserName, password: ossrhPassword)
-         }
-         
-         snapshotRepository(url: 'https://oss.sonatype.org/content/repositories/snapshots/') {
-            authentication(userName: ossrhUserName, password: ossrhPassword)
-         }
-         
-         pom.project {
-            name projectName
-            packaging 'jar'
-            artifactId projectArtifactId
-            description projectDescription
-            url projectGithubUrl
-            
-            scm {
-               connection "scm:git:$projectGithubLink"
-               developerConnection projectScmLink
-               url projectGithubLink
-            }
-            
-            licenses {
-               license {
-                  name 'The MIT License (MIT)'
-                  url 'http://opensource.org/licenses/MIT'
-                  distribution 'repo'
-               }
-            }
-            
-            developers {
-               developer {
-                  id 'jmathewburns'
-                  name 'Jacques Burns'
-                  email 'dev@rangefun.xyz'
-               }
-            }
-         }
-      }
-   }
+    testCompile libraries.junit_api
+    testRuntime libraries.junit_engine
+    testCompileOnly libraries.api_guardian
 }
