@@ -1,8 +1,10 @@
-def junitVersion = '5.0.1'
+def versions = [
+    junit: '5.0.1'
+]
 
 ext.libraries = [
-        junit_api: "org.junit.jupiter:junit-jupiter-api:$junitVersion",
-        junit_engine: "org.junit.jupiter:junit-jupiter-engine:$junitVersion",
+        junit_api: "org.junit.jupiter:junit-jupiter-api:$versions.junit",
+        junit_engine: "org.junit.jupiter:junit-jupiter-engine:$versions.junit",
         // To avoid compiler warnings about @API annotations in JUnit code
         api_guardian: 'org.apiguardian:apiguardian-api:1.0.0'
 ]
