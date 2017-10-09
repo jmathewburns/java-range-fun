@@ -2,6 +2,7 @@ apply from: 'gradle/base.gradle'
 
 apply plugin: 'maven'
 apply plugin: 'signing'
+apply plugin: 'java-library-distribution'
 
 task javadocJar(type: Jar) {
     classifier = 'javadoc'
