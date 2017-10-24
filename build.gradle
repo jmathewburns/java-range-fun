@@ -8,15 +8,28 @@ buildscript {
     dependencies {
         classpath 'gradle.plugin.nl.javadude.gradle.plugins:license-gradle-plugin:0.14.0'
         classpath 'org.junit.platform:junit-platform-gradle-plugin:1.0.1'
+        classpath 'gradle.plugin.com.zyxist:chainsaw:0.1.3'
     }
 }
 
-apply plugin: 'org.junit.platform.gradle.plugin'
+ext.plugin = [
+        java: 'java',
+        maven: 'maven',
+        signing: 'signing',
+        library_dist: 'java-library-distribution',
 
+        junit_platform: 'org.junit.platform.gradle.plugin',
+        license: 'com.github.hierynomus.license',
+        jigsaw: 'com.zyxist.chainsaw',
+]
+
+apply from: 'gradle/config.gradle'
 apply from: 'gradle/base.gradle'
 apply from: 'gradle/dependencies.gradle'
 apply from: 'gradle/licensing.gradle'
 apply from: 'gradle/publishing.gradle'
+
+apply plugin: plugin.junit_platform
 
 repositories {
     mavenCentral()

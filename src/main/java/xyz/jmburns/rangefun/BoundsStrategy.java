@@ -20,7 +20,7 @@
  */
 package xyz.jmburns.rangefun;
 
-enum Bounds {
+enum BoundsStrategy {
     LOWER {
         @Override
         boolean crossed(int value, int boundary) {
