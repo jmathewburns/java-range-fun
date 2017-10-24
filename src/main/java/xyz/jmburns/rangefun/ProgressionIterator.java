@@ -25,12 +25,12 @@ import java.util.NoSuchElementException;
 import java.util.Objects;
 
 class ProgressionIterator implements Iterator<Integer>, Comparable<ProgressionIterator> {
-    private final Bounds bounds;
+    private final BoundsStrategy bounds;
     private final int step;
     private final int end;
     private int current;
 
-    private ProgressionIterator(int start, int end, int step, Bounds bounds) {
+    private ProgressionIterator(int start, int end, int step, BoundsStrategy bounds) {
         this.bounds = bounds;
         this.current = start;
         this.step = step;
@@ -39,12 +39,12 @@ class ProgressionIterator implements Iterator<Integer>, Comparable<ProgressionIt
 
     static ProgressionIterator ascending(int start, int end, int step) {
         //invariants: end >= start, step > 0
-        return new ProgressionIterator(start, end, step, Bounds.UPPER);
+        return new ProgressionIterator(start, end, step, BoundsStrategy.UPPER);
     }
 
     static ProgressionIterator descending(int start, int end, int step) {
         //invariants: end <= start, step > 0
-        return new ProgressionIterator(start, end, -step, Bounds.LOWER);
+        return new ProgressionIterator(start, end, -step, BoundsStrategy.LOWER);
     }
 
     @Override
